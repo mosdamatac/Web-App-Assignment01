@@ -15,6 +15,8 @@
 		<h4>${initParam.author}</h4>
 	</header>
 	<div id="main">
+		<form>
+		</form>
 	</div>
 	<footer>&copy; ${initParam.footer}</footer>
 </div>

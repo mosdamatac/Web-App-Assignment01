@@ -8,6 +8,7 @@ package a00973641.database;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class Database {
 	private static Connection connection;
 	private static Properties properties;
 
-	public void init() throws Exception {
+	public void init() throws IOException, SQLException {
 		File file = new File(DbConstants.DB_PROPERTIES_FILENAME);
 		if (!file.exists()) {
 			// TODO error page
