@@ -33,7 +33,7 @@ public class Assignment01Servlet extends HttpServlet {
 		Database db = Database.getInstance();
 		Connection dbConn = null;
 		PreparedStatement ps = null;
-		String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
+		String selectSQL = String.format("SELECT* FROM %s", DbConstants.MEMBER_TABLE_NAME);
 		try {
 			db.init();
 			dbConn = db.getConnection();
@@ -56,6 +56,8 @@ public class Assignment01Servlet extends HttpServlet {
 
 				memberList.add(member);
 			}
+
+			request.setAttribute("members", memberList);
 		} catch (SQLException e) {
 			// TODO error
 		}
