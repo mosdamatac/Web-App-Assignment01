@@ -3,7 +3,7 @@
   
   <servlet>
     <servlet-name>index</servlet-name>
-    <servlet-class>/resources/index.jsp</servlet-class>
+    <jsp-file>/resources/index.jsp</jsp-file>
     
     <init-param>
       <param-name>inputMsg</param-name>
@@ -19,32 +19,38 @@
     </init-param>
   </servlet>
   
+  <servlet>
+    <servlet-name>assignment01servlet</servlet-name>
+    <servlet-class>A00973641.Assignment01Servlet</servlet-class>
+  </servlet>
+  
 	<context-param>
       <param-name>author</param-name>
       <param-value>Mara Damatac, A00973641</param-value>
     </context-param>
+    
     <context-param>
       <param-name>course</param-name>
       <param-value>Comp 3613</param-value>
     </context-param>
+    
     <context-param>
     	<param-name>footer</param-name>
     	<param-value>A00973641 Mara 2016</param-value>
     </context-param>
 
   <servlet-mapping>
-    <servlet-name>temperatureform</servlet-name>
-    <url-pattern>/temperatureform.jsp</url-pattern>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
   </servlet-mapping>
-    
-  <servlet>
-  	<servlet-name>lab04servlet</servlet-name>
-  	<servlet-class>a00973641.Lab04Servlet</servlet-class>
-  </servlet>
   
   <servlet-mapping>
-  	<servlet-name>lab04servlet</servlet-name>
-  	<url-pattern>/lab04servlet</url-pattern>
+  	<servlet-name>assignment01servlet</servlet-name>
+  	<url-pattern>/assignment01servlet</url-pattern>
   </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>resources/index/jsp</welcome-file>
+  </welcome-file-list>
   
 </web-app>

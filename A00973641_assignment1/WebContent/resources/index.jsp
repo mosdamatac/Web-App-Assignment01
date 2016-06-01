@@ -10,11 +10,12 @@
 <body>
 <div id="wrapper">
 	<header>
-		<h2></h2>
-		<h4></h4>
+		<h2>${applicationScope.course}</h2>
+		<h4>${applicationScope.author}</h4>
 	</header>
 	<div id="main">
 	</div>
+	<footer>&copy; ${applicationScope.footer}</footer>
 </div>
 </body>
 </html>

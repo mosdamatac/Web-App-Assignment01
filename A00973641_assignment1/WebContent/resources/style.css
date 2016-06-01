@@ -1,0 +1,38 @@
+/**
+ * Author: Mara Damatac
+ * ID: A00973641
+ **/
+
+body { background: #daad86;
+    background: -o-radial-gradient(#98dafc, #daad86);
+    background: -webkit-radial-gradient(#98dafc, #daad86);
+    background: -moz-radial-gradient(#98dafc, #daad86);
+    background: radial-gradient(#98dafc, #daad86);}
+#main, .button, footer, header { font-family: "Trebuchet MS", Helvetica, sans-serif; }
+.button, footer, header { background: #312c32;
+    color: #feffff; }
+header { padding: .15em; }
+header h2 { margin: 20px 0 0 30px; }
+header h4 { margin: 5px 0 20px 30px;}
+#wrapper { background: #ede9ce;
+    width: 80%;
+    height: 80vh;
+    margin: 0 auto 0 auto;
+    padding-top: 1em; }
+#main { margin: 2em auto 0 auto;
+    height: 75%;
+    text-align: center; }
+.mainMsg { font-size: 1.5em;
+	font-weight: bold; }
+input[type="text"] { height: 20px; }
+.button { margin: 1.5em .5em 0 .5em;
+	padding: .25em;
+	border: none;
+	box-shadow: 0 5px #999; }
+.button:hover { background: #6e6b6f; }
+.button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+footer { font-size: .75em;
+    text-align: center; }
