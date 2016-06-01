@@ -10,12 +10,12 @@
 <body>
 <div id="wrapper">
 	<header>
-		<h2>${applicationScope.course}</h2>
-		<h4>${applicationScope.author}</h4>
+		<h2>${initParam.course}</h2>
+		<h4>${initParam.author}</h4>
 	</header>
 	<div id="main">
 	</div>
-	<footer>&copy; ${applicationScope.footer}</footer>
+	<footer>&copy; ${initParam.footer}</footer>
 </div>
 </body>
 </html>
