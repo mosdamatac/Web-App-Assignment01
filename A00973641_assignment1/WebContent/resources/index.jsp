@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
+<jsp:include page="/assignment01.jsp"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>

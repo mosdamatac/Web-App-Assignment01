@@ -5,23 +5,11 @@
     <servlet-name>index</servlet-name>
     <jsp-file>/resources/index.jsp</jsp-file>
     
-    <init-param>
-      <param-name>inputMsg</param-name>
-      <param-value>Please enter a temperature to convert.</param-value>
-    </init-param>
-    <init-param>
-      <param-name>convertMsg</param-name>
-      <param-value>Convert temperature to:</param-value>
-    </init-param>
-    <init-param>
-      <param-name>currentTimeMsg</param-name>
-      <param-value>The current time is:</param-value>
-    </init-param>
   </servlet>
   
   <servlet>
     <servlet-name>assignment01servlet</servlet-name>
-    <servlet-class>A00973641.Assignment01Servlet</servlet-class>
+    <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
   
 	<context-param>
@@ -46,11 +34,11 @@
   
   <servlet-mapping>
   	<servlet-name>assignment01servlet</servlet-name>
-  	<url-pattern>/assignment01servlet</url-pattern>
+  	<url-pattern>/assignment01.jsp</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
-  	<welcome-file>resources/index/jsp</welcome-file>
+  	<welcome-file>resources/index.jsp</welcome-file>
   </welcome-file-list>
   
 </web-app>

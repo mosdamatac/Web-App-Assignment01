@@ -6,7 +6,8 @@
  */
 package a00973641.database;
 
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,8 +23,19 @@ public class Database {
 	private static Connection connection;
 	private static Properties properties;
 
-	public void init(Properties properties) throws FileNotFoundException {
-		this.properties = properties;
+	public void init() throws Exception {
+		File file = new File(DbConstants.DB_PROPERTIES_FILENAME);
+		if (!file.exists()) {
+			// TODO error page
+		}
+
+		try {
+			properties = new Properties();
+			properties.load(new FileInputStream(file));
+		} finally {
+			if (connection != null)
+				connection.close();
+		}
 	}
 
 	public static Database getInstance() {
