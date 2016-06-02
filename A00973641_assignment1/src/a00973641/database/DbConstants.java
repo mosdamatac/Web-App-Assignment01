@@ -12,7 +12,7 @@ package a00973641.database;
  */
 public interface DbConstants {
 
-	String DB_PROPERTIES_FILENAME = "dbprops.properties";
+	String DB_PROPERTIES_FILENAME = "../WEB-INF/database/dbprops.properties";
 	String DB_DRIVER_KEY = "Driver";
 	String DB_URL_KEY = "URL";
 	String DB_USER_KEY = "User";

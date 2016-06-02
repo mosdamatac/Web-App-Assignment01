@@ -7,8 +7,8 @@
 package a00973641.database;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,15 +24,17 @@ public class Database {
 	private static Connection connection;
 	private static Properties properties;
 
-	public void init() throws IOException, SQLException {
+	public void init(InputStream input) throws IOException, SQLException {
 		File file = new File(DbConstants.DB_PROPERTIES_FILENAME);
 		if (!file.exists()) {
 			// TODO error page
 		}
 
 		try {
+			System.out.println("Test reading... " + input.read());
 			properties = new Properties();
-			properties.load(new FileInputStream(file));
+			properties.load(input);
+			System.out.println("Property file loaded...");
 		} finally {
 			if (connection != null)
 				connection.close();

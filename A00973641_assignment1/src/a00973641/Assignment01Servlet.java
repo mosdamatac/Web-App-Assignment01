@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import a00973641.data.Member;
-import a00973641.database.Database;
 import a00973641.database.DbConstants;
 
 /**
@@ -30,15 +29,13 @@ public class Assignment01Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Database db = Database.getInstance();
 		Connection dbConn = null;
 		PreparedStatement ps = null;
 		String selectSQL = String.format("SELECT* FROM %s", DbConstants.MEMBER_TABLE_NAME);
 		try {
-			db.init();
-			dbConn = db.getConnection();
+			dbConn = (Connection) getServletContext().getAttribute("DBConnection");
 			ps = dbConn.prepareStatement(selectSQL);
-
+			System.out.println("Retrieving member data...");
 			Member member;
 			List<Member> memberList = new ArrayList<>();
 			ResultSet rs = ps.executeQuery();

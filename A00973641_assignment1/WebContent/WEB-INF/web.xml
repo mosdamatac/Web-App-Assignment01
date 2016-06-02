@@ -4,47 +4,38 @@
     <servlet-name>index</servlet-name>
     <jsp-file>/resources/index.jsp</jsp-file>
   </servlet>
-  
   <servlet>
     <servlet-name>assignment01servlet</servlet-name>
     <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
-  
   <servlet>
-  	<servlet-name>memberServlet</servlet-name>
-  	<servlet-class>a00973641.database.util.MemberServlet</servlet-class>
+    <servlet-name>memberServlet</servlet-name>
+    <servlet-class>a00973641.database.util.MemberServlet</servlet-class>
   </servlet>
-  
   <context-param>
     <param-name>author</param-name>
     <param-value>Mara Damatac, A00973641</param-value>
   </context-param>
-  
   <context-param>
     <param-name>course</param-name>
     <param-value>Comp 3613</param-value>
   </context-param>
-  
   <context-param>
     <param-name>footer</param-name>
     <param-value>A00973641 Mara 2016</param-value>
   </context-param>
-  
   <servlet-mapping>
     <servlet-name>index</servlet-name>
     <url-pattern>/index.jsp</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>assignment01servlet</servlet-name>
     <url-pattern>/assignment01.jsp</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
-  	<servlet-name>memberServlet</servlet-name>
-  	<url-pattern>/member.jsp</url-pattern>
+    <servlet-name>memberServlet</servlet-name>
+    <url-pattern>/member.jsp</url-pattern>
   </servlet-mapping>
-  
   <welcome-file-list>
     <welcome-file>resources/index.jsp</welcome-file>
   </welcome-file-list>
