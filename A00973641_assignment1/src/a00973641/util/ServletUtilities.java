@@ -1,5 +1,5 @@
 /**
- * Project: a00973641_lab02
+ * Project: A00973641_assignment1
  * File: ServletUtilities.java
  * Date: May 4, 2016
  * Time: 11:38:56 PM
