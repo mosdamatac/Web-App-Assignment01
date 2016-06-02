@@ -5,12 +5,12 @@
     <jsp-file>/resources/index.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>assignment01servlet</servlet-name>
+    <servlet-name>assignment01</servlet-name>
     <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>memberServlet</servlet-name>
-    <servlet-class>a00973641.database.util.MemberServlet</servlet-class>
+    <servlet-name>member</servlet-name>
+    <servlet-class>a00973641.database.MemberServlet</servlet-class>
   </servlet>
   <context-param>
     <param-name>author</param-name>
@@ -29,14 +29,14 @@
     <url-pattern>/index.jsp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>assignment01servlet</servlet-name>
-    <url-pattern>/assignment01.jsp</url-pattern>
+    <servlet-name>assignment01</servlet-name>
+    <url-pattern>/assignment01</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>memberServlet</servlet-name>
-    <url-pattern>/member.jsp</url-pattern>
+    <servlet-name>member</servlet-name>
+    <url-pattern>/member</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>resources/index.jsp</welcome-file>
+    <welcome-file>/resources/index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

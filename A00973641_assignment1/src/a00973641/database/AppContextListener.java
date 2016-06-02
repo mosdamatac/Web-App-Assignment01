@@ -48,10 +48,13 @@ public class AppContextListener implements ServletContextListener {
 			ctx.setAttribute("DBConnection", dbConn);
 
 			// Create tables on first run. Comment out when table is created.
-			CreateMemberTable md = new CreateMemberTable(dbConn);
-			md.drop();
-			md.create();
-			System.out.println("Successfully created Member table");
+			// CreateMemberTable md = new CreateMemberTable(dbConn);
+			// md.drop();
+			// md.create();
+			// System.out.println("Successfully created Member table");
+
+			// Test member insert
+
 		} catch (IOException ioe) {
 			// TODO Error
 		} catch (SQLException sqle) {

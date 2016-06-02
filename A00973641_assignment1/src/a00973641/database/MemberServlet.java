@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import a00973641.util.ServletUtilities;
 /**
  * Servlet implementation class MemberAddServlet
  */
-@WebServlet("/MemberAddServlet")
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Pattern VALID_PHONE = Pattern.compile("^[0-9]{3}-[0-9]{3}-[0-9]{4}$");
@@ -44,7 +42,7 @@ public class MemberServlet extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String email = request.getParameter("email");
 
-		StringBuffer errorMsg = null;
+		StringBuffer errorMsg = new StringBuffer();
 
 		if (firstName == null || firstName.trim().equals("")) {
 			errorMsg.append("First name can't be null or empty");
@@ -71,8 +69,9 @@ public class MemberServlet extends HttpServlet {
 			errorMsg.append("Invalid email (e.g. me@organization.com)");
 		}
 
-		if (errorMsg == null) {
+		if (!errorMsg.toString().trim().equals("")) {
 			// TODO error page
+			System.out.println(errorMsg);
 		} else {
 			DBConnectionManager db = DBConnectionManager.getInstance();
 			Connection dbConn = null;
@@ -81,8 +80,8 @@ public class MemberServlet extends HttpServlet {
 					DbConstants.MEMBER_TABLE_NAME);
 			try {
 				dbConn = db.getConnection();
-				dbConn.prepareStatement(insertSQL);
-				ps.setInt(1, 001);
+				ps = dbConn.prepareStatement(insertSQL);
+
 				ps.setString(2, ServletUtilities.filter(firstName));
 				ps.setString(3, ServletUtilities.filter(lastName));
 				ps.setString(4, ServletUtilities.filter(address));

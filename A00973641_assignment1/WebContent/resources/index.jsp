@@ -16,7 +16,7 @@
 		<h4>${initParam.author}</h4>
 	</header>
 	<div id="main">
-		<form action="/member.jsp" name="memberForm" method="post">
+		<form action="member" name="memberForm" method="post">
 			<table>
 				<tr>
 					<th>Member ID</th>
@@ -28,6 +28,7 @@
 					<th>Country</th>
 					<th>Phone Number</th>
 					<th>Email</th>
+					<th>Action</th>
 				</tr>
 
 				<tr>
@@ -40,6 +41,7 @@
 					<td><input type="text" name="country"/></td>
 					<td><input type="text" name="phoneNumber"/></td>
 					<td><input type="text" name="email"/></td>
+					<td><input type="submit" value="Insert" class="button"/>
 				</tr>
 			</table>
 		</form>
