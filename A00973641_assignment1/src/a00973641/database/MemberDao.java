@@ -31,8 +31,24 @@ public class MemberDao {
 			if (DBUtil.tableExists(dbConn, DbConstants.MEMBER_TABLE_NAME)) {
 				String dropSQL = "DROP TABLE " + DbConstants.MEMBER_TABLE_NAME;
 				ps = dbConn.prepareStatement(dropSQL);
-				DBUtil.executeUpdate(ps, dropSQL);
+				ps.executeUpdate();
 			}
+		} finally {
+			DBUtil.closeStatement(ps);
+		}
+	}
+
+	public void create() throws SQLException {
+		PreparedStatement ps = null;
+		try {
+			Connection dbConn = db.getConnection();
+			String createSQL = String.format(
+					"CREATE TABLE %s (MemberID int NOT NULL AUTO_INCREMENT, " + //
+							"firstName VARCHAR(15), lastName VARCHAR(15), Address VARCHAR(25), City VARCHAR(15), " + //
+							"Code CHAR(6), Country VARCHAR(15), PhoneNumber CHAR(12), EMail VARCHAR(30)", //
+					DbConstants.MEMBER_TABLE_NAME);
+			ps = dbConn.prepareStatement(createSQL);
+			ps.executeUpdate();
 		} finally {
 			DBUtil.closeStatement(ps);
 		}

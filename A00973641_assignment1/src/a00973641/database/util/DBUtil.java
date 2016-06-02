@@ -23,33 +23,6 @@ public class DBUtil {
 	}
 
 	/**
-	 * Execute DML statements.
-	 * 
-	 * @param statement
-	 * @param sql
-	 * @return
-	 * @throws SQLException
-	 */
-	public static int executeUpdate(PreparedStatement statement, String sql) throws SQLException {
-		int count = statement.executeUpdate();
-		return count;
-	}
-
-	/**
-	 * Execute query statements.
-	 * 
-	 * @param statement
-	 * @param sql
-	 * @return
-	 * @throws SQLException
-	 */
-	public static ResultSet executeQuery(PreparedStatement statement, String sql) throws SQLException {
-		ResultSet resultset = statement.executeQuery();
-
-		return resultset;
-	}
-
-	/**
 	 * Determine if table already exists in the database.
 	 * 
 	 * @param connection
