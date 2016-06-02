@@ -18,10 +18,10 @@ import a00973641.database.util.DBUtil;
  */
 public class MemberDao {
 
-	private final Database db;
+	private final DBConnectionManager db;
 
 	public MemberDao() {
-		db = Database.getInstance();
+		db = DBConnectionManager.getInstance();
 	}
 
 	public void drop() throws SQLException {

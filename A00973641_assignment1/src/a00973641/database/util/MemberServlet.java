@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import a00973641.database.Database;
+import a00973641.database.DBConnectionManager;
 import a00973641.database.DbConstants;
 import a00973641.util.ServletUtilities;
 
@@ -75,7 +75,7 @@ public class MemberServlet extends HttpServlet {
 		if (errorMsg == null) {
 			// TODO error page
 		} else {
-			Database db = Database.getInstance();
+			DBConnectionManager db = DBConnectionManager.getInstance();
 			Connection dbConn = null;
 			PreparedStatement ps = null;
 			String insertSQL = String.format("INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",

@@ -18,9 +18,9 @@ import java.util.Properties;
  * @author Mara
  *
  */
-public class Database {
+public class DBConnectionManager {
 
-	private static Database dbInstance = new Database();
+	private static DBConnectionManager dbInstance = new DBConnectionManager();
 	private static Connection connection;
 	private static Properties properties;
 
@@ -41,7 +41,7 @@ public class Database {
 		}
 	}
 
-	public static Database getInstance() {
+	public static DBConnectionManager getInstance() {
 		return dbInstance;
 	}
 

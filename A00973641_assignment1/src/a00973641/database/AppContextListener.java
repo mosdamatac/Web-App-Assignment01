@@ -39,7 +39,7 @@ public class AppContextListener implements ServletContextListener {
 		System.out.println("Initializing connection...");
 		ServletContext ctx = servletContextEvent.getServletContext();
 		try {
-			Database db = Database.getInstance();
+			DBConnectionManager db = DBConnectionManager.getInstance();
 			System.out.println("DB instance acquired...");
 			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			db.init(input);
