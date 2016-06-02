@@ -48,18 +48,19 @@ public class DBConnectionManager {
 		try {
 			connect();
 		} catch (ClassNotFoundException e) {
-			// TODO Show error page
+			System.out.println(e.getMessage());
 		}
 
 		return connection;
 	}
 
 	private void connect() throws ClassNotFoundException, SQLException {
-		String url = properties.getProperty(DbConstants.DB_USER_KEY) + "/"
+		String url = properties.getProperty(DbConstants.DB_URL_KEY) + "/"
 				+ properties.getProperty(DbConstants.DB_NAME_KEY);
-		System.out.println(url);
-		Class.forName(properties.getProperty(DbConstants.DB_DRIVER_KEY));
-		connection = DriverManager.getConnection(url, properties);
+		Class.forName("net.sourceforge.jtds.jdbc.Driver");
+		System.out.println("Driver loaded");
+		connection = DriverManager.getConnection("jdbc:sqlserver://Beangrinder.bcit.ca/jspweb", "javastudent",
+				"compjava");
 
 	}
 

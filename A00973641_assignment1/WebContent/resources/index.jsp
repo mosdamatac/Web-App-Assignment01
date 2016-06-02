@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
-<jsp:include page="/assignment01.jsp"/>
+
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
@@ -29,22 +29,7 @@
 					<th>Phone Number</th>
 					<th>Email</th>
 				</tr>
-				<%
-				List<Member> members = (List<Member>) request.getAttribute("members");
-				for (Member member : members) {
-				%>
-				<tr>
-					<td>${requestScope.member.memberID }</td>
-					<td>${requestScope.member.firstName }</td>
-					<td>${requestScope.member.lastName }</td>
-					<td>${requestScope.member.address }</td>
-					<td>${requestScope.member.city }</td>
-					<td>${requestScope.member.code }</td>
-					<td>${requestScope.member.country }</td>
-					<td>${requestScope.member.phoneNumber }</td>
-					<td>${requestScope.member.email }</td>
-				</tr>
-				<%} %>
+
 				<tr>
 					<td>Autofill</td>
 					<td><input type="text" name="firstName"/></td>
