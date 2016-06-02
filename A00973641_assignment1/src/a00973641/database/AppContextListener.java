@@ -38,28 +38,33 @@ public class AppContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext ctx = servletContextEvent.getServletContext();
 		DBConnectionManager db = null;
+		// PreparedStatement ps = null;
+		// String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
 		try {
 			db = DBConnectionManager.getInstance();
 			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			db.init(input);
 			Connection dbConn = db.getConnection();
-			if (dbConn != null)
-				System.out.println("Successfully connected to db..." + dbConn.toString());
 			ctx.setAttribute("DBConnection", dbConn);
 
 			// Create tables on first run. Comment out when table is created.
 			// CreateMemberTable md = new CreateMemberTable(dbConn);
 			// md.drop();
 			// md.create();
-			// System.out.println("Successfully created Member table");
 
-			// Test member insert
-
+			// Test member select
+			// System.out.println("Executing: " + selectSQL);
+			// ps = dbConn.prepareStatement(selectSQL);
+			// ResultSet rs = ps.executeQuery();
+			// while (rs.next()) {
+			// System.out.println(rs.getString(2));
+			// }
 		} catch (IOException ioe) {
 			// TODO Error
 		} catch (SQLException sqle) {
 
 		} finally {
+			// DBUtil.closeStatement(ps);
 			db.shutdown();
 		}
 	}
