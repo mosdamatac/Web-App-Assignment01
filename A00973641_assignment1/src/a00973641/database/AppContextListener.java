@@ -41,7 +41,7 @@ public class AppContextListener implements ServletContextListener {
 		try {
 			Database db = Database.getInstance();
 			System.out.println("DB instance acquired...");
-			InputStream input = ctx.getResourceAsStream("/WEB-INF/database/dbprops.properties");
+			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			db.init(input);
 			System.out.println("Successfully connected to db...");
 			ctx.setAttribute("DBConnection", db.getConnection());

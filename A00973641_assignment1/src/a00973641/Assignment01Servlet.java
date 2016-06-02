@@ -34,6 +34,7 @@ public class Assignment01Servlet extends HttpServlet {
 		String selectSQL = String.format("SELECT* FROM %s", DbConstants.MEMBER_TABLE_NAME);
 		try {
 			dbConn = (Connection) getServletContext().getAttribute("DBConnection");
+			System.out.println("Excecuting " + selectSQL);
 			ps = dbConn.prepareStatement(selectSQL);
 			System.out.println("Retrieving member data...");
 			Member member;

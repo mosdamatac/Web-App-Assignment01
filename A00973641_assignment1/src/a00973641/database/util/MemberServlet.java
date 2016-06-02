@@ -97,13 +97,7 @@ public class MemberServlet extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO error
 			} finally {
-				if (ps != null) {
-					try {
-						ps.close();
-					} catch (SQLException ex) {
-						// TODO error
-					}
-				}
+				DBUtil.closeStatement(ps);
 			}
 		}
 	}
