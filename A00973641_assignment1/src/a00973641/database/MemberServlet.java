@@ -1,4 +1,4 @@
-package a00973641.database.util;
+package a00973641.database;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import a00973641.database.DBConnectionManager;
-import a00973641.database.DbConstants;
+import a00973641.database.util.DBUtil;
 import a00973641.util.ServletUtilities;
 
 /**

@@ -6,7 +6,6 @@
  */
 package a00973641.database;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -25,11 +24,6 @@ public class DBConnectionManager {
 	private static Properties properties;
 
 	public void init(InputStream input) throws IOException, SQLException {
-		File file = new File(DbConstants.DB_PROPERTIES_FILENAME);
-		if (!file.exists()) {
-			// TODO error page
-		}
-
 		try {
 			System.out.println("Test reading... " + input.read());
 			properties = new Properties();
@@ -47,6 +41,7 @@ public class DBConnectionManager {
 
 	public Connection getConnection() throws SQLException {
 		if (connection != null) {
+			System.out.println(connection.toString());
 			return connection;
 		}
 
@@ -60,9 +55,12 @@ public class DBConnectionManager {
 	}
 
 	private void connect() throws ClassNotFoundException, SQLException {
+		String url = properties.getProperty(DbConstants.DB_USER_KEY) + "/"
+				+ properties.getProperty(DbConstants.DB_NAME_KEY);
+		System.out.println(url);
 		Class.forName(properties.getProperty(DbConstants.DB_DRIVER_KEY));
-		connection = DriverManager.getConnection(properties.getProperty(DbConstants.DB_URL_KEY),
-				properties.getProperty(DbConstants.DB_USER_KEY), properties.getProperty(DbConstants.DB_PASSWORD_KEY));
+		connection = DriverManager.getConnection(url, properties);
+
 	}
 
 	public void shutdown() {

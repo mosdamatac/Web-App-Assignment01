@@ -17,6 +17,7 @@ public interface DbConstants {
 	String DB_URL_KEY = "URL";
 	String DB_USER_KEY = "User";
 	String DB_PASSWORD_KEY = "Password";
+	String DB_NAME_KEY = "DatabaseName";
 	String TABLE_ROOT = "A00973641_";
 	String MEMBER_TABLE_NAME = TABLE_ROOT + "Members";
 

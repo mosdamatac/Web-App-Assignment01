@@ -18,16 +18,15 @@ import a00973641.database.util.DBUtil;
  */
 public class MemberDao {
 
-	private final DBConnectionManager db;
+	private final Connection dbConn;
 
-	public MemberDao() {
-		db = DBConnectionManager.getInstance();
+	public MemberDao(Connection connection) {
+		dbConn = connection;
 	}
 
 	public void drop() throws SQLException {
 		PreparedStatement ps = null;
 		try {
-			Connection dbConn = db.getConnection();
 			if (DBUtil.tableExists(dbConn, DbConstants.MEMBER_TABLE_NAME)) {
 				String dropSQL = "DROP TABLE " + DbConstants.MEMBER_TABLE_NAME;
 				ps = dbConn.prepareStatement(dropSQL);
@@ -41,7 +40,6 @@ public class MemberDao {
 	public void create() throws SQLException {
 		PreparedStatement ps = null;
 		try {
-			Connection dbConn = db.getConnection();
 			String createSQL = String.format(
 					"CREATE TABLE %s (MemberID int NOT NULL AUTO_INCREMENT, " + //
 							"firstName VARCHAR(15), lastName VARCHAR(15), Address VARCHAR(25), City VARCHAR(15), " + //
