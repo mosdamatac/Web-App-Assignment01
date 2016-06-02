@@ -25,10 +25,8 @@ public class DBConnectionManager {
 
 	public void init(InputStream input) throws IOException, SQLException {
 		try {
-			System.out.println("Test reading... " + input.read());
 			properties = new Properties();
 			properties.load(input);
-			System.out.println("Property file loaded...");
 		} finally {
 			if (connection != null)
 				connection.close();
@@ -41,26 +39,21 @@ public class DBConnectionManager {
 
 	public Connection getConnection() throws SQLException {
 		if (connection != null) {
-			System.out.println(connection.toString());
 			return connection;
 		}
 
 		try {
 			connect();
 		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
+			// TODO error
 		}
 
 		return connection;
 	}
 
 	private void connect() throws ClassNotFoundException, SQLException {
-		String url = properties.getProperty(DbConstants.DB_URL_KEY) + "/"
-				+ properties.getProperty(DbConstants.DB_NAME_KEY);
-		Class.forName("net.sourceforge.jtds.jdbc.Driver");
-		System.out.println("Driver loaded");
-		connection = DriverManager.getConnection("jdbc:sqlserver://Beangrinder.bcit.ca/jspweb", "javastudent",
-				"compjava");
+		Class.forName(properties.getProperty(DbConstants.DB_DRIVER_KEY));
+		connection = DriverManager.getConnection(properties.getProperty(DbConstants.DB_URL_KEY), properties);
 
 	}
 
