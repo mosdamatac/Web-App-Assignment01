@@ -16,11 +16,11 @@ import a00973641.database.util.DBUtil;
  * @author Mara
  *
  */
-public class MemberDao {
+public class CreateMemberTable {
 
 	private final Connection dbConn;
 
-	public MemberDao(Connection connection) {
+	public CreateMemberTable(Connection connection) {
 		dbConn = connection;
 	}
 
