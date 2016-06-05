@@ -17,7 +17,7 @@ import a00973641.util.ServletUtilities;
 /**
  * Servlet implementation class MemberAddServlet
  */
-public class MemberServlet extends HttpServlet {
+public class InsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Pattern VALID_PHONE = Pattern.compile("^\\d{3}-\\d{3}-\\d{4}$");
 	private static final Pattern VALID_EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",

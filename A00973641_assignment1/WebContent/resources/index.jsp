@@ -14,7 +14,7 @@
 	function submitIt(myForm)
 	{
 		errorMsg = ""
-		if (myForm.firstName.trim().value == "") {
+		if (myForm.firstName.value == "") {
 			errorMsg = errorMsg + "First name can't be null or empty\n"
 		}
 		if (myForm.lastName.trim().value == "") {
@@ -56,7 +56,7 @@
 		<h4>${initParam.author}</h4>
 	</header>
 	<div id="main">
-		<form action="member" name="memberForm" method="post" onSubmit="return submitIt(this)">
+		<form action="assignment01" name="memberForm" method="post" onSubmit="return submitIt(this)">
 			<table align="center">
 				<tr>
 					<th>Member ID</th>
@@ -81,7 +81,8 @@
 					<td><input type="text" name="country"/></td>
 					<td><input type="text" name="phoneNumber"/></td>
 					<td><input type="text" name="email"/></td>
-					<td><input type="submit" value="Insert" class="button"/>
+					<td><input type="submit" name="insert" value="Insert" class="button"/>
+					<td><input type="submit" name="clear" value="Clear" class="button"/>
 				</tr>
 			</table>
 		</form>

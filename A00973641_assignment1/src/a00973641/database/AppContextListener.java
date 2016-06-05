@@ -3,6 +3,8 @@ package a00973641.database;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
@@ -38,8 +40,9 @@ public class AppContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext ctx = servletContextEvent.getServletContext();
 		DBConnectionManager db = null;
-		// PreparedStatement ps = null;
-		// String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
+		// Test member select
+		PreparedStatement ps = null;
+		String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
 		try {
 			db = DBConnectionManager.getInstance();
 			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
@@ -53,12 +56,12 @@ public class AppContextListener implements ServletContextListener {
 			// md.create();
 
 			// Test member select
-			// System.out.println("Executing: " + selectSQL);
-			// ps = dbConn.prepareStatement(selectSQL);
-			// ResultSet rs = ps.executeQuery();
-			// while (rs.next()) {
-			// System.out.println(rs.getString(2));
-			// }
+			System.out.println("Executing: " + selectSQL);
+			ps = dbConn.prepareStatement(selectSQL);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString(2));
+			}
 		} catch (IOException ioe) {
 			// TODO Error
 		} catch (SQLException sqle) {

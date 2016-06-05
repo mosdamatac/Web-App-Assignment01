@@ -9,8 +9,12 @@
     <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>member</servlet-name>
-    <servlet-class>a00973641.database.MemberServlet</servlet-class>
+    <servlet-name>insert</servlet-name>
+    <servlet-class>a00973641.database.InsertServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>view</servlet-name>
+    <servlet-class>a00973641.view.ViewServlet</servlet-class>
   </servlet>
   <context-param>
     <param-name>author</param-name>
@@ -33,8 +37,12 @@
     <url-pattern>/assignment01</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>member</servlet-name>
-    <url-pattern>/member</url-pattern>
+    <servlet-name>insert</servlet-name>
+    <url-pattern>/insert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>view</servlet-name>
+    <url-pattern>/view</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>/resources/index.jsp</welcome-file>
