@@ -58,18 +58,20 @@
 	<div id="main">
 		<form action="assignment01" name="memberForm" method="post" onSubmit="return submitIt(this)">
 			<table align="center">
-				<tr>
-					<th>Member ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Address</th>
-					<th>City</th>
-					<th>Code</th>
-					<th>Country</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Action</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>Member ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Address</th>
+						<th>City</th>
+						<th>Code</th>
+						<th>Country</th>
+						<th>Phone Number</th>
+						<th>Email</th>
+						<th>Action</th>
+					</tr>
+				</thead>
 
 				<tr>
 					<td>Autofill</td>
@@ -82,7 +84,7 @@
 					<td><input type="text" name="phoneNumber"/></td>
 					<td><input type="text" name="email"/></td>
 					<td><input type="submit" name="insert" value="Insert" class="button"/>
-					<td><input type="submit" name="clear" value="Clear" class="button"/>
+					<td><input type="reset" name="clear" value="Clear" class="button"/>
 				</tr>
 			</table>
 		</form>
