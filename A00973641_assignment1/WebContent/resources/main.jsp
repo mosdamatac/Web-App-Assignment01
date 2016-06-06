@@ -103,7 +103,7 @@ response.setDateHeader("Expires", 0);
 				<td><input type="text" name="phoneNumber" value="<%= member.getPhoneNumber() %>"/></td>
 				<td><input type="text" name="email" value="<%= member.getEmail() %>"/></td>
 				<td><input type="submit" name="update" value="Update" class="button"/>
-					&nbsp;<input type="submit" name="delete" value="Delete" class="button" onClick="confirmIt(this)"></td>
+					&nbsp;<input type="submit" name="delete" value="Delete" class="button" onClick="return confirm('Are you sure you want to delete member?')"></td>
 				
 			</tr>
 			</table>
@@ -127,6 +127,7 @@ response.setDateHeader("Expires", 0);
 			</tr>
 			</table>
 		</form>
+		<br/>
 	</div>
 	<footer>&copy; ${initParam.footer}</footer>
 </div>
