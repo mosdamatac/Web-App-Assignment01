@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,8 @@ public class DeleteServlet extends HttpServlet {
 			System.out.println("Executing: " + deleteSQL);
 			int count = ps.executeUpdate();
 			System.out.println("Successfully deleted row: " + count);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
 		} catch (SQLException e) {
 			// TODO error
 			System.out.println(e.getMessage());

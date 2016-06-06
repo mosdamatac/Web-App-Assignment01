@@ -45,7 +45,7 @@ public class AppContextListener implements ServletContextListener {
 			db = DBConnectionManager.getInstance();
 			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			db.init(input);
-			Connection dbConn = db.getConnection();
+			// Connection dbConn = db.getConnection();
 			ctx.setAttribute("database", db);
 
 			// Create tables on first run. Comment out when table is created.

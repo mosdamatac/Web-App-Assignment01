@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +32,6 @@ public class InsertServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String address = request.getParameter("address");
@@ -46,32 +44,33 @@ public class InsertServlet extends HttpServlet {
 		StringBuffer errorMsg = new StringBuffer();
 
 		if (firstName == null || firstName.trim().equals("")) {
-			errorMsg.append("First name can't be null or empty\n");
+			errorMsg.append("First name can't be empty;\n");
 		}
 		if (lastName == null || lastName.trim().equals("")) {
-			errorMsg.append("Last name can't be null or empty\n");
+			errorMsg.append("Last name can't be empty;\n");
 		}
 		if (address == null || address.trim().equals("")) {
-			errorMsg.append("Address can't be null or empty\n");
+			errorMsg.append("Address can't be empty;\n");
 		}
 		if (city == null || city.trim().equals("")) {
-			errorMsg.append("City can't be null or empty\n");
+			errorMsg.append("City can't be empty;\n");
 		}
 		if (code == null || code.trim().equals("")) {
-			errorMsg.append("Code can't be null or empty\n");
+			errorMsg.append("Code can't be empty;\n");
 		}
 		if (country == null || country.trim().equals("")) {
-			errorMsg.append("Country can't be null or empty\n");
+			errorMsg.append("Country can't be empty;\n");
 		}
 		if (phoneNumber == null || !ServletUtilities.isValid(phoneNumber.trim(), VALID_PHONE)) {
-			errorMsg.append("Invalid phone number (e.g. 111-111-1234)\n");
+			errorMsg.append("Invalid phone number (e.g. 111-111-1234);\n");
 		}
 		if (email == null || !ServletUtilities.isValid(email.trim(), VALID_EMAIL)) {
-			errorMsg.append("Invalid email (e.g. me@organization.com)\n");
+			errorMsg.append("Invalid email (e.g. me@organization.com);\n");
 		}
 
 		if (errorMsg.toString().trim().length() != 0) {
-			// TODO error page
+			// response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+			// errorMsg.toString());
 			System.out.println(errorMsg);
 		} else {
 			DBConnectionManager db = DBConnectionManager.getInstance();
@@ -96,6 +95,8 @@ public class InsertServlet extends HttpServlet {
 				System.out.println("Executing: " + insertSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully added row: " + count);
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
 			} catch (SQLException e) {
 				// TODO error
 				System.out.println(e.getMessage());

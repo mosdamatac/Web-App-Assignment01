@@ -34,7 +34,7 @@ public class Assignment01Servlet extends HttpServlet {
 			rd.forward(request, response);
 		} else if (request.getParameter("update") != null) {
 			System.out.println("Redirecting to UpdateServlet...");
-			rd = ctx.getNamedDispatcher("/update");
+			rd = ctx.getRequestDispatcher("/update");
 			rd.forward(request, response);
 		}
 	}
