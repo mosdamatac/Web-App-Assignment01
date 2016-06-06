@@ -32,6 +32,7 @@ public class UpdateServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		RequestDispatcher rd = null;
 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -45,34 +46,35 @@ public class UpdateServlet extends HttpServlet {
 		StringBuffer errorMsg = new StringBuffer();
 
 		if (firstName == null || firstName.trim().equals("")) {
-			errorMsg.append("First name can't be null or empty;\n");
+			errorMsg.append("First name can't be null or empty<br>");
 		}
 		if (lastName == null || lastName.trim().equals("")) {
-			errorMsg.append("Last name can't be null or empty;\n");
+			errorMsg.append("Last name can't be null or empty<br>");
 		}
 		if (address == null || address.trim().equals("")) {
-			errorMsg.append("Address can't be null or empty;\n");
+			errorMsg.append("Address can't be null or empty<br>");
 		}
 		if (city == null || city.trim().equals("")) {
-			errorMsg.append("City can't be null or empty;\n");
+			errorMsg.append("City can't be null or empty<br>");
 		}
 		if (code == null || code.trim().equals("")) {
-			errorMsg.append("Code can't be null or empty;\n");
+			errorMsg.append("Code can't be null or empty<br>");
 		}
 		if (country == null || country.trim().equals("")) {
-			errorMsg.append("Country can't be null or empty;\n");
+			errorMsg.append("Country can't be null or empty<br>");
 		}
 		if (phoneNumber == null || !ServletUtilities.isValid(phoneNumber.trim(), VALID_PHONE)) {
-			errorMsg.append("Invalid phone number (e.g. 111-111-1234);\n");
+			errorMsg.append("Invalid phone number (e.g. 111-111-1234)<br>");
 		}
 		if (email == null || !ServletUtilities.isValid(email.trim(), VALID_EMAIL)) {
-			errorMsg.append("Invalid email (e.g. me@organization.com);\n");
+			errorMsg.append("Invalid email (e.g. me@organization.com)<br>");
 		}
 
 		if (errorMsg.toString().trim().length() != 0) {
-			// response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-			// errorMsg.toString());
 			System.out.println(errorMsg);
+			request.setAttribute("errorMsg", errorMsg);
+			rd = getServletContext().getRequestDispatcher("/error");
+			rd.forward(request, response);
 		} else {
 			DBConnectionManager db = DBConnectionManager.getInstance();
 			Connection dbConn = null;
@@ -98,7 +100,7 @@ public class UpdateServlet extends HttpServlet {
 				System.out.println("Executing: " + updateSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully updated row: " + count);
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+				rd = getServletContext().getRequestDispatcher("/index.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
 				// TODO error
