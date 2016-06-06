@@ -22,7 +22,6 @@ public class CreateMemberTable {
 
 	public CreateMemberTable(Connection connection) {
 		dbConn = connection;
-		System.out.println(dbConn.toString());
 	}
 
 	public void drop() throws SQLException {
@@ -55,6 +54,7 @@ public class CreateMemberTable {
 			System.out.println("Table created " + count);
 		} finally {
 			DBUtil.closeStatement(ps);
+
 		}
 	}
 }

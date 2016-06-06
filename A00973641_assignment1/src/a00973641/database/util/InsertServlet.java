@@ -1,4 +1,4 @@
-package a00973641.database;
+package a00973641.database.util;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import a00973641.database.util.DBUtil;
+import a00973641.database.DBConnectionManager;
+import a00973641.database.DbConstants;
 import a00973641.util.ServletUtilities;
 
 /**
@@ -69,7 +70,7 @@ public class InsertServlet extends HttpServlet {
 			errorMsg.append("Invalid email (e.g. me@organization.com)\n");
 		}
 
-		if (!errorMsg.toString().trim().equals("")) {
+		if (errorMsg.toString().trim().length() != 0) {
 			// TODO error page
 			System.out.println(errorMsg);
 		} else {
@@ -78,12 +79,6 @@ public class InsertServlet extends HttpServlet {
 			PreparedStatement ps = null;
 			String insertSQL = String.format("INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 					DbConstants.MEMBER_TABLE_NAME);
-			// String insertSQL = String.format("INSERT INTO %s VALUES (%s, %s,
-			// %s, %s, %s, %s, %s, %s)",
-			// DbConstants.MEMBER_TABLE_NAME, "\'Mara\'", "\'Damatac\'",
-			// "\'12345 101 St\'", "\'Vancouver\'",
-			// "\'1A23B4\'", "\'Canada\'", "\'123-456-7890\'",
-			// "\'mara@damatac.me\'");
 			try {
 				System.out.println("Attempting to add data...");
 				dbConn = db.getConnection();
@@ -106,6 +101,7 @@ public class InsertServlet extends HttpServlet {
 				System.out.println(e.getMessage());
 			} finally {
 				DBUtil.closeStatement(ps);
+				db.shutdown();
 			}
 		}
 	}

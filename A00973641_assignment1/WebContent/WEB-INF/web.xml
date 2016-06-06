@@ -10,7 +10,15 @@
   </servlet>
   <servlet>
     <servlet-name>insert</servlet-name>
-    <servlet-class>a00973641.database.InsertServlet</servlet-class>
+    <servlet-class>a00973641.database.util.InsertServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>a00973641.database.util.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>update</servlet-name>
+  	<servlet-class>a00973641.database.util.UpdateServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>view</servlet-name>
@@ -39,6 +47,14 @@
   <servlet-mapping>
     <servlet-name>insert</servlet-name>
     <url-pattern>/insert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>update</servlet-name>
+  	<url-pattern>/update</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>view</servlet-name>

@@ -22,10 +22,19 @@ public class Assignment01Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		ServletContext ctx = getServletContext();
+		RequestDispatcher rd = null;
 		if (request.getParameter("insert") != null) {
-			System.out.println("Redirecting to MemberServlet...");
-			ServletContext ctx = getServletContext();
-			RequestDispatcher rd = ctx.getRequestDispatcher("/insert");
+			System.out.println("Redirecting to InsertServlet...");
+			rd = ctx.getRequestDispatcher("/insert");
+			rd.forward(request, response);
+		} else if (request.getParameter("delete") != null) {
+			System.out.println("Redirecting to DeleteServlet...");
+			rd = ctx.getRequestDispatcher("/delete");
+			rd.forward(request, response);
+		} else if (request.getParameter("update") != null) {
+			System.out.println("Redirecting to UpdateServlet...");
+			rd = ctx.getNamedDispatcher("/update");
 			rd.forward(request, response);
 		}
 	}

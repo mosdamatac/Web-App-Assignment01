@@ -49,14 +49,14 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/view"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
 	</header>
 	<div id="main">
-		<form action="assignment01" name="memberForm" method="post" onSubmit="return submitIt(this)">
+		<form action="assignment01" name="headerForm" method="post" onSubmit="submitIt(this)">
 			<table align="center">
 				<thead>
 					<tr>
@@ -72,20 +72,50 @@
 						<th>Action</th>
 					</tr>
 				</thead>
+			</table>
+		</form>
+				
+		<%
+		List<Member> members = (List<Member>) request.getAttribute("members");
+		int i = 0;
+		for (Member member : members) {
+			request.setAttribute("memberID", member.getMemberID());
+		%>
+		<form action="assignment01" name="memberForm" method="post" onSubmit="submitIt(this)"> 
+			<table>
+			<tr>
+				<td><input type="text" name="memberID" value="<%= member.getMemberID() %>" class="idField" readonly/></td>
+				<td><input type="text" name="firstName" value="<%= member.getFirstName() %>"/></td>
+				<td><input type="text" name="lastName" value="<%= member.getLastName() %>"/></td>
+				<td><input type="text" name="address" value="<%= member.getAddress() %>"/></td>
+				<td><input type="text" name="city" value="<%= member.getCity() %>"/></td>
+				<td><input type="text" name="code" value="<%= member.getCode() %>"/></td>
+				<td><input type="text" name="country" value="<%= member.getCountry() %>"/></td>
+				<td><input type="text" name="phoneNumber" value="<%= member.getPhoneNumber() %>"/></td>
+				<td><input type="text" name="email" value="<%= member.getEmail() %>"/></td>
+				<td><input type="submit" name="update" value="Update" class="button"/>
+					&nbsp;<input type="submit" name="delete" value="Delete" class="button"></td>
+				
+			</tr>
+			</table>
+		</form>
+		<%} %>
 
-				<tr>
-					<td>Autofill</td>
-					<td><input type="text" name="firstName"/></td>
-					<td><input type="text" name="lastName"/></td>
-					<td><input type="text" name="address"/></td>
-					<td><input type="text" name="city"/></td>
-					<td><input type="text" name="code"/></td>
-					<td><input type="text" name="country"/></td>
-					<td><input type="text" name="phoneNumber"/></td>
-					<td><input type="text" name="email"/></td>
-					<td><input type="submit" name="insert" value="Insert" class="button"/>
-					<td><input type="reset" name="clear" value="Clear" class="button"/>
-				</tr>
+		<form action="assignment01" name="addForm" method="post" onSubmit="submitIt(this)">
+			<table>
+			<tr>
+				<td>Autofill</td>
+				<td><input type="text" name="firstName"/></td>
+				<td><input type="text" name="lastName"/></td>
+				<td><input type="text" name="address"/></td>
+				<td><input type="text" name="city"/></td>
+				<td><input type="text" name="code"/></td>
+				<td><input type="text" name="country"/></td>
+				<td><input type="text" name="phoneNumber"/></td>
+				<td><input type="text" name="email"/></td>
+				<td><input type="submit" name="insert" value="Insert" class="button"/>
+					&nbsp;<input type="reset" name="clear" value="Clear" class="button"/></td>
+			</tr>
 			</table>
 		</form>
 	</div>

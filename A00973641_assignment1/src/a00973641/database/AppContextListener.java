@@ -3,8 +3,6 @@ package a00973641.database;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
@@ -41,14 +39,14 @@ public class AppContextListener implements ServletContextListener {
 		ServletContext ctx = servletContextEvent.getServletContext();
 		DBConnectionManager db = null;
 		// Test member select
-		PreparedStatement ps = null;
-		String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
+		// PreparedStatement ps = null;
+		// String selectSQL = "SELECT * FROM " + DbConstants.MEMBER_TABLE_NAME;
 		try {
 			db = DBConnectionManager.getInstance();
 			InputStream input = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			db.init(input);
 			Connection dbConn = db.getConnection();
-			ctx.setAttribute("DBConnection", dbConn);
+			ctx.setAttribute("database", db);
 
 			// Create tables on first run. Comment out when table is created.
 			// CreateMemberTable md = new CreateMemberTable(dbConn);
@@ -56,12 +54,12 @@ public class AppContextListener implements ServletContextListener {
 			// md.create();
 
 			// Test member select
-			System.out.println("Executing: " + selectSQL);
-			ps = dbConn.prepareStatement(selectSQL);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				System.out.println(rs.getString(2));
-			}
+			// System.out.println("Executing: " + selectSQL);
+			// ps = dbConn.prepareStatement(selectSQL);
+			// ResultSet rs = ps.executeQuery();
+			// while (rs.next()) {
+			// System.out.println(rs.getString(2));
+			// }
 		} catch (IOException ioe) {
 			// TODO Error
 		} catch (SQLException sqle) {
