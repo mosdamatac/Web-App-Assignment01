@@ -9,6 +9,10 @@
     <jsp-file>/resources/main.jsp</jsp-file>
   </servlet>
   <servlet>
+    <servlet-name>result</servlet-name>
+    <jsp-file>/resources/result.jsp</jsp-file>
+  </servlet>
+  <servlet>
     <servlet-name>assignment01</servlet-name>
     <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
@@ -55,6 +59,10 @@
   <servlet-mapping>
     <servlet-name>main</servlet-name>
     <url-pattern>/main.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>result</servlet-name>
+    <url-pattern>/result.jsp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>assignment01</servlet-name>

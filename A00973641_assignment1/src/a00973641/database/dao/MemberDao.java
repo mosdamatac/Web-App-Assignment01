@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import a00973641.data.Member;
 import a00973641.database.DBConnectionManager;
 import a00973641.database.DbConstants;
 import a00973641.database.util.DBUtil;
@@ -46,6 +47,20 @@ public class MemberDao {
 		PreparedStatement ps = null;
 		String deleteSQL = String.format("DELETE FROM %s WHERE MemberID=?", DbConstants.MEMBER_TABLE_NAME);
 		try {
+			request.setAttribute("operation", "deleted");
+
+			Member member = new Member();
+			member.setMemberID(Integer.parseInt(request.getParameter("memberID")));
+			member.setFirstName(request.getParameter("firstName"));
+			member.setLastName(request.getParameter("lastName"));
+			member.setAddress(request.getParameter("address"));
+			member.setCity(request.getParameter("city"));
+			member.setCode(request.getParameter("code"));
+			member.setCountry(request.getParameter("country"));
+			member.setPhoneNumber(request.getParameter("phoneNumber"));
+			member.setEmail(request.getParameter("email"));
+			request.setAttribute("member", member);
+
 			System.out.println("Attempting to add data...");
 			dbConn = db.getConnection();
 			ps = dbConn.prepareStatement(deleteSQL);
@@ -55,7 +70,7 @@ public class MemberDao {
 			System.out.println("Executing: " + deleteSQL);
 			int count = ps.executeUpdate();
 			System.out.println("Successfully deleted row: " + count);
-			rd = ctx.getRequestDispatcher("/main.jsp");
+			rd = ctx.getRequestDispatcher("/result.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -67,6 +82,8 @@ public class MemberDao {
 
 	public static void update(HttpServletRequest request, HttpServletResponse response, ServletContext ctx)
 			throws ServletException, IOException {
+		request.setAttribute("operation", "updated");
+
 		RequestDispatcher rd = null;
 
 		String firstName = request.getParameter("firstName");
@@ -77,6 +94,18 @@ public class MemberDao {
 		String country = request.getParameter("country");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String email = request.getParameter("email");
+
+		Member member = new Member();
+		member.setMemberID(Integer.parseInt(request.getParameter("memberID")));
+		member.setFirstName(firstName);
+		member.setLastName(lastName);
+		member.setAddress(address);
+		member.setCity(city);
+		member.setCode(code);
+		member.setCountry(country);
+		member.setPhoneNumber(phoneNumber);
+		member.setEmail(email);
+		request.setAttribute("member", member);
 
 		StringBuffer errorMsg = new StringBuffer();
 
@@ -135,7 +164,7 @@ public class MemberDao {
 				System.out.println("Executing: " + updateSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully updated row: " + count);
-				rd = ctx.getRequestDispatcher("/main.jsp");
+				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -152,6 +181,8 @@ public class MemberDao {
 
 	public static void insert(HttpServletRequest request, HttpServletResponse response, ServletContext ctx)
 			throws ServletException, IOException {
+		request.setAttribute("operation", "added");
+
 		RequestDispatcher rd = null;
 
 		String firstName = request.getParameter("firstName");
@@ -162,6 +193,17 @@ public class MemberDao {
 		String country = request.getParameter("country");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String email = request.getParameter("email");
+
+		Member member = new Member();
+		member.setFirstName(firstName);
+		member.setLastName(lastName);
+		member.setAddress(address);
+		member.setCity(city);
+		member.setCode(code);
+		member.setCountry(country);
+		member.setPhoneNumber(phoneNumber);
+		member.setEmail(email);
+		request.setAttribute("member", member);
 
 		StringBuffer errorMsg = new StringBuffer();
 
@@ -218,7 +260,7 @@ public class MemberDao {
 				System.out.println("Executing: " + insertSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully added row: " + count);
-				rd = ctx.getRequestDispatcher("/main.jsp");
+				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
 				// TODO error
