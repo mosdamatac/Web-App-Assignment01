@@ -45,6 +45,8 @@ input[type="text"].idField  { width: 40px; }
 #error { font-size: 1.5em;
 	color: red;
 	font-weight: bold; }
+#welcome { font-size: 1.5em;
+	font-weight: bold; }
 footer { font-size: .75em;
     text-align: center;
     clear: both;
