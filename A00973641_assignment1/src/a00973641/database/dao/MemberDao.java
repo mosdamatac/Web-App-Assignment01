@@ -49,25 +49,18 @@ public class MemberDao {
 		try {
 			request.setAttribute("operation", "deleted");
 
-			Member member = new Member();
-			member.setMemberID(Integer.parseInt(request.getParameter("memberID")));
-			member.setFirstName(request.getParameter("firstName"));
-			member.setLastName(request.getParameter("lastName"));
-			member.setAddress(request.getParameter("address"));
-			member.setCity(request.getParameter("city"));
-			member.setCode(request.getParameter("code"));
-			member.setCountry(request.getParameter("country"));
-			member.setPhoneNumber(request.getParameter("phoneNumber"));
-			member.setEmail(request.getParameter("email"));
+			// Set member field values
+			Member member = setMember(request);
 			request.setAttribute("member", member);
 
-			System.out.println("Attempting to add data...");
+			// Delete member
+			System.out.println("Attempting to delete data...");
 			dbConn = db.getConnection();
+
+			// Prepare statement
 			ps = dbConn.prepareStatement(deleteSQL);
+			ps.setInt(1, member.getMemberID());
 
-			ps.setInt(1, Integer.parseInt(request.getParameter("memberID")));
-
-			System.out.println("Executing: " + deleteSQL);
 			int count = ps.executeUpdate();
 			System.out.println("Successfully deleted row: " + count);
 			rd = ctx.getRequestDispatcher("/result.jsp");
@@ -86,53 +79,12 @@ public class MemberDao {
 
 		RequestDispatcher rd = null;
 
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String code = request.getParameter("code");
-		String country = request.getParameter("country");
-		String phoneNumber = request.getParameter("phoneNumber");
-		String email = request.getParameter("email");
-
-		Member member = new Member();
-		member.setMemberID(Integer.parseInt(request.getParameter("memberID")));
-		member.setFirstName(firstName);
-		member.setLastName(lastName);
-		member.setAddress(address);
-		member.setCity(city);
-		member.setCode(code);
-		member.setCountry(country);
-		member.setPhoneNumber(phoneNumber);
-		member.setEmail(email);
+		// Set member field values
+		Member member = setMember(request);
 		request.setAttribute("member", member);
 
-		StringBuffer errorMsg = new StringBuffer();
-
-		if (firstName == null || firstName.trim().equals("")) {
-			errorMsg.append("First name can't be null or empty<br>");
-		}
-		if (lastName == null || lastName.trim().equals("")) {
-			errorMsg.append("Last name can't be null or empty<br>");
-		}
-		if (address == null || address.trim().equals("")) {
-			errorMsg.append("Address can't be null or empty<br>");
-		}
-		if (city == null || city.trim().equals("")) {
-			errorMsg.append("City can't be null or empty<br>");
-		}
-		if (code == null || code.trim().equals("")) {
-			errorMsg.append("Code can't be null or empty<br>");
-		}
-		if (country == null || country.trim().equals("")) {
-			errorMsg.append("Country can't be null or empty<br>");
-		}
-		if (phoneNumber == null || !ServletUtilities.isValid(phoneNumber.trim(), VALID_PHONE)) {
-			errorMsg.append("Invalid phone number (e.g. 111-111-1234)<br>");
-		}
-		if (email == null || !ServletUtilities.isValid(email.trim(), VALID_EMAIL)) {
-			errorMsg.append("Invalid email (e.g. me@organization.com)<br>");
-		}
+		// Validate input values
+		StringBuffer errorMsg = validate(member);
 
 		if (errorMsg.toString().trim().length() != 0) {
 			System.out.println(errorMsg);
@@ -140,6 +92,7 @@ public class MemberDao {
 			rd = ctx.getRequestDispatcher("/error");
 			rd.forward(request, response);
 		} else {
+			// Update member data
 			DBConnectionManager db = DBConnectionManager.getInstance();
 			Connection dbConn = null;
 			PreparedStatement ps = null;
@@ -149,19 +102,19 @@ public class MemberDao {
 			try {
 				System.out.println("Attempting to update data...");
 				dbConn = db.getConnection();
+
+				// Prepare statement
 				ps = dbConn.prepareStatement(updateSQL);
+				ps.setString(1, member.getFirstName());
+				ps.setString(2, member.getLastName());
+				ps.setString(3, member.getAddress());
+				ps.setString(4, member.getCity());
+				ps.setString(5, member.getCode());
+				ps.setString(6, member.getCountry());
+				ps.setString(7, member.getPhoneNumber());
+				ps.setString(8, member.getEmail());
+				ps.setInt(9, member.getMemberID());
 
-				ps.setString(1, request.getParameter("firstName"));
-				ps.setString(2, request.getParameter("lastName"));
-				ps.setString(3, request.getParameter("address"));
-				ps.setString(4, request.getParameter("city"));
-				ps.setString(5, request.getParameter("code"));
-				ps.setString(6, request.getParameter("country"));
-				ps.setString(7, request.getParameter("phoneNumber"));
-				ps.setString(8, request.getParameter("email"));
-				ps.setInt(9, Integer.parseInt(request.getParameter("memberID")));
-
-				System.out.println("Executing: " + updateSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully updated row: " + count);
 				rd = ctx.getRequestDispatcher("/result.jsp");
@@ -185,52 +138,12 @@ public class MemberDao {
 
 		RequestDispatcher rd = null;
 
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String code = request.getParameter("code");
-		String country = request.getParameter("country");
-		String phoneNumber = request.getParameter("phoneNumber");
-		String email = request.getParameter("email");
-
-		Member member = new Member();
-		member.setFirstName(firstName);
-		member.setLastName(lastName);
-		member.setAddress(address);
-		member.setCity(city);
-		member.setCode(code);
-		member.setCountry(country);
-		member.setPhoneNumber(phoneNumber);
-		member.setEmail(email);
+		// Set member field values
+		Member member = setMember(request);
 		request.setAttribute("member", member);
 
-		StringBuffer errorMsg = new StringBuffer();
-
-		if (firstName == null || firstName.trim().equals("")) {
-			errorMsg.append("First name can't be empty<br>");
-		}
-		if (lastName == null || lastName.trim().equals("")) {
-			errorMsg.append("Last name can't be empty<br>");
-		}
-		if (address == null || address.trim().equals("")) {
-			errorMsg.append("Address can't be empty<br>");
-		}
-		if (city == null || city.trim().equals("")) {
-			errorMsg.append("City can't be empty<br>");
-		}
-		if (code == null || code.trim().equals("")) {
-			errorMsg.append("Code can't be empty<br>");
-		}
-		if (country == null || country.trim().equals("")) {
-			errorMsg.append("Country can't be empty<br>");
-		}
-		if (phoneNumber == null || !ServletUtilities.isValid(phoneNumber.trim(), VALID_PHONE)) {
-			errorMsg.append("Invalid phone number (e.g. 111-111-1234)<br>");
-		}
-		if (email == null || !ServletUtilities.isValid(email.trim(), VALID_EMAIL)) {
-			errorMsg.append("Invalid email (e.g. me@organization.com)<br>");
-		}
+		// Validate input values
+		StringBuffer errorMsg = validate(member);
 
 		if (errorMsg.toString().trim().length() != 0) {
 			System.out.println(errorMsg);
@@ -246,18 +159,18 @@ public class MemberDao {
 			try {
 				System.out.println("Attempting to add data...");
 				dbConn = db.getConnection();
+
+				// Prepare statement
 				ps = dbConn.prepareStatement(insertSQL);
+				ps.setString(1, ServletUtilities.filter(member.getFirstName()));
+				ps.setString(2, ServletUtilities.filter(member.getLastName()));
+				ps.setString(3, ServletUtilities.filter(member.getAddress()));
+				ps.setString(4, ServletUtilities.filter(member.getCity()));
+				ps.setString(5, ServletUtilities.filter(member.getCode()));
+				ps.setString(6, ServletUtilities.filter(member.getCountry()));
+				ps.setString(7, ServletUtilities.filter(member.getPhoneNumber()));
+				ps.setString(8, ServletUtilities.filter(member.getEmail()));
 
-				ps.setString(1, ServletUtilities.filter(firstName));
-				ps.setString(2, ServletUtilities.filter(lastName));
-				ps.setString(3, ServletUtilities.filter(address));
-				ps.setString(4, ServletUtilities.filter(city));
-				ps.setString(5, ServletUtilities.filter(code));
-				ps.setString(6, ServletUtilities.filter(country));
-				ps.setString(7, ServletUtilities.filter(phoneNumber));
-				ps.setString(8, ServletUtilities.filter(email));
-
-				System.out.println("Executing: " + insertSQL);
 				int count = ps.executeUpdate();
 				System.out.println("Successfully added row: " + count);
 				rd = ctx.getRequestDispatcher("/result.jsp");
@@ -270,5 +183,65 @@ public class MemberDao {
 				db.shutdown();
 			}
 		}
+	}
+
+	private static StringBuffer validate(Member member) {
+		StringBuffer errorMsg = new StringBuffer();
+
+		if (member.getFirstName() == null || member.getFirstName().trim().equals("")) {
+			errorMsg.append("First name can't be empty<br>");
+		}
+		if (member.getLastName() == null || member.getLastName().trim().equals("")) {
+			errorMsg.append("Last name can't be empty<br>");
+		}
+		if (member.getAddress() == null || member.getAddress().trim().equals("")) {
+			errorMsg.append("Address can't be empty<br>");
+		}
+		if (member.getCity() == null || member.getCity().trim().equals("")) {
+			errorMsg.append("City can't be empty<br>");
+		}
+		if (member.getCode() == null || member.getCode().trim().equals("")) {
+			errorMsg.append("Code can't be empty<br>");
+		}
+		if (member.getCountry() == null || member.getCountry().trim().equals("")) {
+			errorMsg.append("Country can't be empty<br>");
+		}
+		if (member.getPhoneNumber() == null || !ServletUtilities.isValid(member.getPhoneNumber().trim(), VALID_PHONE)) {
+			errorMsg.append("Invalid phone number (e.g. 111-111-1234)<br>");
+		}
+		if (member.getEmail() == null || !ServletUtilities.isValid(member.getEmail().trim(), VALID_EMAIL)) {
+			errorMsg.append("Invalid email (e.g. me@organization.com)<br>");
+		}
+
+		return errorMsg;
+	}
+
+	private static Member setMember(HttpServletRequest request) {
+		int memberID = 0;
+		if (request.getParameter("memberID") != null) {
+			memberID = Integer.parseInt(request.getParameter("memberID"));
+		}
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String code = request.getParameter("code");
+		String country = request.getParameter("country");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String email = request.getParameter("email");
+
+		Member member = new Member();
+		member.setMemberID(memberID);
+		member.setFirstName(firstName);
+		member.setLastName(lastName);
+		member.setAddress(address);
+		member.setCity(city);
+		member.setCode(code);
+		member.setCountry(country);
+		member.setPhoneNumber(phoneNumber);
+		member.setEmail(email);
+		request.setAttribute("member", member);
+
+		return member;
 	}
 }
