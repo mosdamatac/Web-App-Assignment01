@@ -22,22 +22,22 @@ response.setDateHeader("Expires", 0);
 		function submitIt(myForm)
 		{
 			errMsg = ""
-			if(myForm.firstName.trim().value == ""){
+			if(myForm.firstName.value == ""){
 				errMsg = "First name can't empty\n"
 			}
-			if(myForm.lastName.trim().value == ""){
+			if(myForm.lastName.value == ""){
 				errMsg = errMsg + "Last name can't be empty\n"
 			}
-			if(myForm.address.trim().value == ""){
+			if(myForm.address.value == ""){
 				errMsg = errMsg + "Address can't be empty\n"
 			}
-			if(myForm.city.trim().value == "") {				
+			if(myForm.city.value == "") {				
 				errMsg = errMsg + "City can't be empty\n"
 			}
-			if(myForm.code.trim().value == "") {
+			if(myForm.code.value == "") {
 				errMsg = errMsg + "Code can't be empty\n"
 			}
-			if(myForm.country.trim().value == "") {
+			if(myForm.country.value == "") {
 				errMsg = errMsg + "Country can't be empty\n"
 			}			
 			if (!regexp.test(myForm.phoneNumber.value)) {
