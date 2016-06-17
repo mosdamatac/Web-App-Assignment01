@@ -19,7 +19,8 @@
 		<span id="welcome">Welcome to ${initParam.course }</span><br/>
 		<br/>
 		<form action="assignment01">
-			<input type="submit" value="Continue" name="continue" class="button">
+			<input type="submit" value="Continue" name="continueBtn" class="button">
+			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>
 		<br/>
 		</p>

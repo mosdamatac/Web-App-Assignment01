@@ -24,7 +24,10 @@ response.setDateHeader("Expires", 0);
 		<span id="error">ERROR!!</span><br/><br/>
 		${requestScope.errorMsg }
 		<br/>
-		<form action="assignment01"><input type="submit" value="Back to Home" name="backBtn" class="button"/></form>
+		<form action="assignment01">
+			<input type="submit" value="Back" name="backBtn" class="button"/>
+			<input type="submit" value="Home" name="homeBtn" class="button"/>
+		</form>
 		</p>
 	</div>
 	<footer>&copy; ${initParam.footer}</footer>
