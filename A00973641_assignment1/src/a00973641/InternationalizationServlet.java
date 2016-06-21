@@ -5,10 +5,12 @@ import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import a00973641.util.CookieUtil;
 import a00973641.util.ResourceBundleUtility;
 
 /**
@@ -16,6 +18,7 @@ import a00973641.util.ResourceBundleUtility;
  */
 public class InternationalizationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String LANG_COOKIE = "langChoice";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -26,12 +29,25 @@ public class InternationalizationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ResourceBundleUtility rbUtil = ResourceBundleUtility.getInstance();
 		rbUtil.init(request);
-		if (request.getParameter("nlBtn") != null) {
+		Cookie cookie;
+		String cookieStr = "";
+		if (CookieUtil.getCookie(request, LANG_COOKIE) != null) {
+			cookieStr = CookieUtil.getCookieValue(request, LANG_COOKIE, "en");
+			System.out.println(cookieStr);
+		}
+
+		if (request.getParameter("nlBtn") != null || cookieStr.equals("nl")) {
 			System.out.println("Translating to dutch..");
 			rbUtil.updateString(new Locale("nl", "BE"));
+			cookie = new Cookie(LANG_COOKIE, "nl");
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
 		} else {
 			System.out.println("Translating to english..");
 			rbUtil.updateString(new Locale("en", "CA"));
+			cookie = new Cookie(LANG_COOKIE, "en");
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
 		}
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/about");

@@ -48,7 +48,7 @@ public class Assignment01Servlet extends HttpServlet {
 			rd = ctx.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 		} else if (request.getParameter("aboutBtn") != null) {
-			System.out.println("Redirecting to about.jsp...");
+			System.out.println("Redirecting to i18n...");
 			rd = ctx.getRequestDispatcher("/i18n");
 			rd.forward(request, response);
 		}
