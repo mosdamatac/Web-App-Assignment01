@@ -34,7 +34,8 @@ public class ResourceBundleUtility {
 
 		request.setAttribute(RbConstants.INTRO_HEAD, resourceBundle.getString(RbConstants.INTRO_HEAD));
 		request.setAttribute(RbConstants.INTRO_BODY, resourceBundle.getString(RbConstants.INTRO_BODY));
-		request.setAttribute(RbConstants.USE_APP_HEAD, resourceBundle.getString(RbConstants.USE_APP_BODY));
+		request.setAttribute(RbConstants.USE_APP_HEAD, resourceBundle.getString(RbConstants.USE_APP_HEAD));
+		request.setAttribute(RbConstants.USE_APP_BODY, resourceBundle.getString(RbConstants.USE_APP_BODY));
 		request.setAttribute(RbConstants.USE_DB_HEAD, resourceBundle.getString(RbConstants.USE_DB_HEAD));
 		request.setAttribute(RbConstants.USE_DB_BODY, resourceBundle.getString(RbConstants.USE_DB_BODY));
 	}

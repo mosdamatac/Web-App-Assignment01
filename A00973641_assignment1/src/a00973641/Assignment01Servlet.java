@@ -49,7 +49,7 @@ public class Assignment01Servlet extends HttpServlet {
 			rd.forward(request, response);
 		} else if (request.getParameter("aboutBtn") != null) {
 			System.out.println("Redirecting to about.jsp...");
-			rd = ctx.getRequestDispatcher("/about");
+			rd = ctx.getRequestDispatcher("/i18n");
 			rd.forward(request, response);
 		}
 	}

@@ -26,9 +26,9 @@ public class InternationalizationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ResourceBundleUtility rbUtil = ResourceBundleUtility.getInstance();
 		rbUtil.init(request);
-		if (request.getParameter("jpBtn") != null) {
-			System.out.println("Translating to japanese..");
-			rbUtil.updateString(new Locale("ja", "JP"));
+		if (request.getParameter("nlBtn") != null) {
+			System.out.println("Translating to dutch..");
+			rbUtil.updateString(new Locale("nl", "BE"));
 		} else {
 			System.out.println("Translating to english..");
 			rbUtil.updateString(new Locale("en", "CA"));

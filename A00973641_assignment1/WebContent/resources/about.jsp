@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/style.css"/>
 <title>About Assingment 2</title>
 </head>
@@ -16,7 +16,7 @@
 			Choose language:
 			<form action="i18n">
 				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
-				<input type="submit" value="JPN" name="jpBtn" class="buttonLink"/>
+				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
 			</form>
 		</div>
 	</header>
