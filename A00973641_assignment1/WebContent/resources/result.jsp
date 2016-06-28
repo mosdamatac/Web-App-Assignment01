@@ -9,49 +9,58 @@
 <title>Result</title>
 </head>
 <body>
+<jsp:include page="/i18n"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
+		<div id="langOption">
+			<form action="i18n">
+				<label style="display: inline;">${requestScope.Choose_Language }:</label>
+				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
+				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
+				<input type="submit" value="FRA" name="frBtn" class="buttonLink"/>
+			</form>
+		</div>
 	</header>
 	<div id="main">
 		<p>
 			<span id="welcome">Successfully ${requestScope.operation } member:</span><br/>
 			<table>
 				<tr>
-					<td>Member ID</td>
+					<td>${requestScope.Member_Id}</td>
 					<td>${requestScope.member.memberID }</td>
 				</tr>
 				<tr>
-					<td>First Name</td>
+					<td>${requestScope.First_Name}</td>
 					<td>${requestScope.member.firstName }</td>
 				</tr>
 				<tr>
-					<td>Last Name</td>
+					<td>${requestScope.Last_Name}</td>
 					<td>${requestScope.member.lastName }</td>
 				</tr>
 				<tr>
-					<td>address</td>
+					<td>${requestScope.Address}</td>
 					<td>${requestScope.member.address }</td>
 				</tr>
 				<tr>
-					<td>City</td>
+					<td>${requestScope.City}</td>
 					<td>${requestScope.member.city }</td>
 				</tr>
 				<tr>
-					<td>Code</td>
+					<td>${requestScope.Code}</td>
 					<td>${requestScope.member.code }</td>
 				</tr>
 				<tr>
-					<td>Country</td>
+					<td>${requestScope.Country}</td>
 					<td>${requestScope.member.country }</td>
 				</tr>
 				<tr>
-					<td>Phone Number</td>
+					<td>${requestScope.Phone_Number}</td>
 					<td>${requestScope.member.phoneNumber }</td>
 				</tr>
 				<tr>
-					<td>Email</td>
+					<td>${requestScope.Email}</td>
 					<td>${requestScope.member.email }</td>
 				</tr>
 			</table>

@@ -14,14 +14,23 @@ response.setDateHeader("Expires", 0);
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css"/>
 </head>
 <body>
+<jsp:include page="/i18n"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
+		<div id="langOption">
+			<form action="i18n">
+				<label style="display: inline;">${requestScope.Choose_Language }:</label>
+				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
+				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
+				<input type="submit" value="FRA" name="frBtn" class="buttonLink"/>
+			</form>
+		</div>
 	</header>
 	<div id="main">
 		<p>
-		<span id="error">ERROR!!</span><br/><br/>
+		<span id="error">${requestScope.Error }!!</span><br/><br/>
 		${requestScope.errorMsg }
 		<br/>
 		<form action="assignment01">

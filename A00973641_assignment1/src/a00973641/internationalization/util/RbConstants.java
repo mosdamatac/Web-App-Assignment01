@@ -4,7 +4,7 @@
  * Date: Jun 20, 2016
  * Time: 11:32:21 PM
  */
-package a00973641.util;
+package a00973641.internationalization.util;
 
 /**
  * @author Mara
@@ -12,6 +12,9 @@ package a00973641.util;
  */
 public interface RbConstants {
 
+	String CHOOSE_LANG = "Choose_Language";
+
+	// About page Strings
 	String INTRO_HEAD = "Intro_Head";
 	String INTRO_BODY_1 = "Intro_Body_1";
 	String INTRO_BODY_2 = "Intro_Body_2";
@@ -28,4 +31,25 @@ public interface RbConstants {
 	String USE_DB_BODY_5 = "How_To_Use_DB_Body_5";
 	String USE_DB_BODY_6 = "How_To_Use_DB_Body_6";
 	String USE_DB_BODY_7 = "How_To_Use_DB_Body_7";
+
+	// Error page Strings
+	String ERROR = "Error";
+
+	// Home page Strings
+	String WELCOME = "Welcome";
+
+	// Data Strings
+	String MEMBER_ID = "Member_Id";
+	String FIRST_NAME = "First_Name";
+	String LAST_NAME = "Last_Name";
+	String ADDRESS = "Address";
+	String CITY = "City";
+	String CODE = "Code";
+	String COUNTRY = "Country";
+	String PHONE_NUMBER = "Phone_Number";
+	String EMAIL = "Email";
+
+	// Main page Strings
+	String ACTION = "Action";
+	String AUTO_FILL = "Auto_Fill";
 }

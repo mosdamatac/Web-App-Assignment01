@@ -5,18 +5,20 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/style.css"/>
-<title>About Assingment 2</title>
+<title>About Assignment 2</title>
 </head>
 <body>
+<jsp:include page="/i18n"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
 		<div id="langOption">
 			<form action="i18n">
-				<label style="display: inline;">Choose language:</label>
+				<label style="display: inline;">${requestScope.Choose_Language }:</label>
 				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
 				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
+				<input type="submit" value="FRA" name="frBtn" class="buttonLink"/>
 			</form>
 		</div>
 	</header>

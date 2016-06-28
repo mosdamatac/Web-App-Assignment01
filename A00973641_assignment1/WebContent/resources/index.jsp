@@ -9,14 +9,23 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css"/>
 </head>
 <body>
+<jsp:include page="/i18n"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
+		<div id="langOption">
+			<form action="i18n">
+				<label style="display: inline;">${requestScope.Choose_Language }:</label>
+				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
+				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
+				<input type="submit" value="FRA" name="frBtn" class="buttonLink"/>
+			</form>
+		</div>
 	</header>
 	<div id="main">
 		<p>
-		<span id="welcome">Welcome to ${initParam.course }</span><br/>
+		<span id="welcome">${requestScope.Welcome }!! <br/> ${initParam.course }</span><br/>
 		<br/>
 		<form action="assignment01">
 			<input type="submit" value="Continue" name="continueBtn" class="button">

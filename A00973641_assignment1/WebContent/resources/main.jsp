@@ -59,26 +59,35 @@ response.setDateHeader("Expires", 0);
 </head>
 <body>
 <jsp:include page="/view"/>
+<jsp:include page="/i18n"/>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
+		<div id="langOption">
+			<form action="i18n">
+				<label style="display: inline;">${requestScope.Choose_Language }:</label>
+				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
+				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
+				<input type="submit" value="FRA" name="frBtn" class="buttonLink"/>
+			</form>
+		</div>
 	</header>
 	<div id="main">
 		<form action="assignment01" name="headerForm" method="post" onSubmit="return submitIt(this)">
 			<table align="center">
 				<thead>
 					<tr>
-						<th>Member ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Address</th>
-						<th>City</th>
-						<th>Code</th>
-						<th>Country</th>
-						<th>Phone Number</th>
-						<th>Email</th>
-						<th>Action</th>
+						<th>${requestScope.Member_Id}</th>
+						<th>${requestScope.First_Name}</th>
+						<th>${requestScope.Last_Name}</th>
+						<th>${requestScope.Address}</th>
+						<th>${requestScope.City}</th>
+						<th>${requestScope.Code}</th>
+						<th>${requestScope.Country}</th>
+						<th>${requestScope.Phone_Number}</th>
+						<th>${requestScope.Email}</th>
+						<th>${requestScope.Action}</th>
 					</tr>
 				</thead>
 			</table>
@@ -113,7 +122,7 @@ response.setDateHeader("Expires", 0);
 		<form action="assignment01" name="addForm" method="post" onSubmit="submitIt(this)">
 			<table>
 			<tr>
-				<td>Autofill</td>
+				<td>${requestScope.Auto_Fill }</td>
 				<td><input type="text" name="firstName"/></td>
 				<td><input type="text" name="lastName"/></td>
 				<td><input type="text" name="address"/></td>

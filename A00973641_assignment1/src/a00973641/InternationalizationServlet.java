@@ -3,15 +3,14 @@ package a00973641;
 import java.io.IOException;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import a00973641.internationalization.util.ResourceBundleUtility;
 import a00973641.util.CookieUtil;
-import a00973641.util.ResourceBundleUtility;
 
 /**
  * Servlet implementation class InternationalizationServlet
@@ -32,18 +31,26 @@ public class InternationalizationServlet extends HttpServlet {
 		Cookie cookie;
 		String cookieStr = "";
 
-		// If request is from another page, check for cookie
-		if (request.getParameter("aboutBtn") != null && CookieUtil.getCookie(request, LANG_COOKIE) != null) {
+		// Check cookie for language preference
+		if (CookieUtil.getCookie(request, LANG_COOKIE) != null) {
 			cookieStr = CookieUtil.getCookieValue(request, LANG_COOKIE, "en");
 			System.out.println(cookieStr);
 		}
 
-		// Check button clicked: ENG or DUT
+		// Check button clicked: ENG, DUT or FRA
+		// Set language to Dutch and store in cookie
 		if (request.getParameter("nlBtn") != null || cookieStr.equals("nl")) {
 			System.out.println("Translating to dutch..");
 			rbUtil.updateString(new Locale("nl", "BE"));
 			cookie = new Cookie(LANG_COOKIE, "nl");
-		} else {
+		}
+		// Set language to French and store in cookie
+		else if (request.getParameter("frBtn") != null || cookieStr.equals("fr")) {
+			rbUtil.updateString(new Locale("fr", "FR"));
+			cookie = new Cookie(LANG_COOKIE, "fr");
+		}
+		// Set language to English and store in cookie
+		else {
 			System.out.println("Translating to english..");
 			rbUtil.updateString(new Locale("en", "CA"));
 			cookie = new Cookie(LANG_COOKIE, "en");
@@ -53,8 +60,8 @@ public class InternationalizationServlet extends HttpServlet {
 		cookie.setMaxAge(60 * 60 * 24 * 7);
 		response.addCookie(cookie);
 
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/about");
-		rd.forward(request, response);
+		String referer = request.getHeader("Referer");
+		response.sendRedirect(referer);
 	}
 
 	/**
