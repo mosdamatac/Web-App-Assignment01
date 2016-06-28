@@ -32,6 +32,10 @@
     <servlet-name>about</servlet-name>
     <jsp-file>/resources/about.jsp</jsp-file>
   </servlet>
+  <servlet>
+  	<servlet-name>summary</servlet-name>
+  	<jsp-file>/resources/summary.jsp</jsp-file>
+  </servlet>
   <context-param>
     <param-name>author</param-name>
     <param-value>Mara Damatac, A00973641</param-value>
@@ -75,6 +79,10 @@
   <servlet-mapping>
     <servlet-name>about</servlet-name>
     <url-pattern>/about</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>summary</servlet-name>
+  	<url-pattern>/summary</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>/resources/index.jsp</welcome-file>

@@ -1,12 +1,11 @@
-<%@ page import="java.util.List, a00973641.data.Member" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Assignment01</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/style.css"/>
 </head>
 <body>
 <jsp:include page="/i18n"/>
@@ -26,10 +25,11 @@
 	</header>
 	<div id="main">
 		<p>
-		<span class="spanHead">${requestScope.Welcome }!! <br/> ${initParam.course }</span><br/>
+		<span class="spanHead">${requestScope.Summary }</span><br/>
 		<br/>
+		<section>${sessionScope.SQLSummary }</section>
 		<form action="assignment01">
-			<input type="submit" value="Continue" name="continueBtn" class="button">
+			<input type="submit" value="Home" name="homeBtn" class="button"/>
 			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>
 		<br/>

@@ -51,6 +51,10 @@ public class Assignment01Servlet extends HttpServlet {
 			System.out.println("Redirecting to about.jsp...");
 			rd = ctx.getRequestDispatcher("/about");
 			rd.forward(request, response);
+		} else if (request.getParameter("summaryBtn") != null) {
+			System.out.println("Redirecting to summary.jsp...");
+			rd = ctx.getRequestDispatcher("/summary");
+			rd.forward(request, response);
 		}
 	}
 

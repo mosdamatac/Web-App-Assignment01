@@ -140,6 +140,7 @@ response.setDateHeader("Expires", 0);
 		<br/><br/>
 		<form action="assignment01" name="buttons" method="post">
 			<input type="submit" value="Home" name="homeBtn" class="button"/>
+			<input type="submit" value="Summary" name="summaryBtn" class="button"/>
 			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>
 		<br/>
