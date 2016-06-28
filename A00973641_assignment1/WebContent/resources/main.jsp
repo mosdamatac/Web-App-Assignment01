@@ -66,6 +66,7 @@ response.setDateHeader("Expires", 0);
 		<h4>${initParam.author}</h4>
 		<div id="langOption">
 			<form action="i18n">
+				<input type="hidden" name="langPreference" value="langPreference"/>
 				<label style="display: inline;">${requestScope.Choose_Language }:</label>
 				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
 				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>

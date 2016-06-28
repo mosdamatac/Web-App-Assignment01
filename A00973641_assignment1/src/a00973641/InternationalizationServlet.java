@@ -32,7 +32,7 @@ public class InternationalizationServlet extends HttpServlet {
 		String cookieStr = "";
 
 		// Check cookie for language preference
-		if (CookieUtil.getCookie(request, LANG_COOKIE) != null) {
+		if (request.getParameter("langPreference") == null && CookieUtil.getCookie(request, LANG_COOKIE) != null) {
 			cookieStr = CookieUtil.getCookieValue(request, LANG_COOKIE, "en");
 			System.out.println(cookieStr);
 		}
