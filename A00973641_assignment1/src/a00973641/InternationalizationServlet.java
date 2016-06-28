@@ -31,24 +31,27 @@ public class InternationalizationServlet extends HttpServlet {
 		rbUtil.init(request);
 		Cookie cookie;
 		String cookieStr = "";
-		if (CookieUtil.getCookie(request, LANG_COOKIE) != null) {
+
+		// If request is from another page, check for cookie
+		if (request.getParameter("aboutBtn") != null && CookieUtil.getCookie(request, LANG_COOKIE) != null) {
 			cookieStr = CookieUtil.getCookieValue(request, LANG_COOKIE, "en");
 			System.out.println(cookieStr);
 		}
 
+		// Check button clicked: ENG or DUT
 		if (request.getParameter("nlBtn") != null || cookieStr.equals("nl")) {
 			System.out.println("Translating to dutch..");
 			rbUtil.updateString(new Locale("nl", "BE"));
 			cookie = new Cookie(LANG_COOKIE, "nl");
-			cookie.setMaxAge(60 * 60 * 24 * 7);
-			response.addCookie(cookie);
 		} else {
 			System.out.println("Translating to english..");
 			rbUtil.updateString(new Locale("en", "CA"));
 			cookie = new Cookie(LANG_COOKIE, "en");
-			cookie.setMaxAge(60 * 60 * 24 * 7);
-			response.addCookie(cookie);
+
 		}
+
+		cookie.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(cookie);
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/about");
 		rd.forward(request, response);

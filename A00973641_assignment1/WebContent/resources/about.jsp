@@ -13,8 +13,8 @@
 		<h2>${initParam.course}</h2>
 		<h4>${initParam.author}</h4>
 		<div id="langOption">
-			Choose language:
 			<form action="i18n">
+				<label style="display: inline;">Choose language:</label>
 				<input type="submit" value="ENG" name="enBtn" class="buttonLink"/>
 				<input type="submit" value="DUT" name="nlBtn" class="buttonLink"/>
 			</form>
@@ -22,17 +22,29 @@
 	</header>
 	<div id="main">
 		<section>
-			<h4>${requestScope.Intro_Head }</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nisl magna. Nulla feugiat, ante sed euismod convallis, quam enim facilisis massa, et rhoncus nibh tortor vitae elit. Nam sed convallis mauris. Phasellus condimentum rutrum turpis sit amet dapibus. Donec fermentum tincidunt porta. Quisque sagittis neque in mauris consequat, ac dictum eros tincidunt. Proin ut eros eros. Pellentesque interdum felis non tellus aliquam, in posuere magna finibus. Vivamus ac ante eu elit porta scelerisque. Sed a semper justo, nec eleifend nulla. Sed eleifend velit dolor, sed blandit purus vulputate at. Fusce efficitur, erat eu mollis porta, quam nisl auctor ante, sit amet hendrerit purus tellus eget enim. Vivamus non laoreet elit, et mollis ante.</p>
+			<h3 class="paragraphHeader">${requestScope.Intro_Head }</h3>
+			<p>${requestScope.Intro_Body_1 }</p>
+			<p>${requestScope.Intro_Body_2 }</p>
+			<p>${requestScope.Intro_Body_Author_Details }</p>
 		</section>
 		<section>
-			<h4>${requestScope.How_To_Use_App_Head }</h4>
-			<p>Ut tincidunt rhoncus cursus. Duis nec felis tellus. Maecenas consequat tincidunt justo quis sollicitudin. Vivamus rutrum, nibh consectetur faucibus faucibus, nisi turpis viverra felis, eget convallis eros elit nec augue. Fusce tempor ac lacus sed vestibulum. Praesent maximus vestibulum odio at scelerisque. Quisque sit amet ex est. In consequat volutpat cursus. Aliquam porta eu justo a interdum. Aliquam venenatis eget augue nec bibendum. Integer gravida purus risus, a sodales diam tincidunt ut.</p>
+			<h3 class="paragraphHeader">${requestScope.How_To_Use_App_Head }</h3>
+			<p>${requestScope.How_To_Use_App_Body_1 }</p>
+			<p>${requestScope.How_To_Use_App_Body_2 }</p>
+			<p>${requestScope.How_To_Use_App_Body_3 }</p>
 		</section>
 		<section>
-			<h4>${requestScope.How_To_Use_DB_Head }</h4>
-			<p>Sed dignissim ornare enim non ultrices. Vestibulum auctor at nulla non euismod. Nulla nec pretium diam. Integer vehicula venenatis ornare. Praesent ut congue magna, a dapibus mi. Fusce porttitor hendrerit sem id sagittis. Donec malesuada quis augue non semper. Fusce turpis odio, ullamcorper et leo et, elementum sagittis erat. Cras placerat augue dui, ut varius tellus scelerisque et.</p>
+			<h3 class="paragraphHeader">${requestScope.How_To_Use_DB_Head }</h3>
+			<p>${requestScope.How_To_Use_DB_Body_1 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_2 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_3 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_4 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_5 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_6 }</p>
+			<p>${requestScope.How_To_Use_DB_Body_7 }</p>
 		</section>
+		<br/>
+		<br/>
 		<form action="assignment01">
 			<input type="submit" value="Home" name="homeBtn" class="button"/>
 		</form>

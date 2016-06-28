@@ -11,7 +11,8 @@ body { background: #daad86;
 #main, .button, footer, header, #langOption { font-family: "Trebuchet MS", Helvetica, sans-serif; }
 .button, footer, header { background: #312c32;
     color: #feffff; }
-header { padding: .15em; }
+header { padding: .15em;
+	position: relative; }
 header h2 { margin: 20px 0 0 30px; }
 header h4 { margin: 5px 0 20px 30px;}
 #wrapper { background: #ede9ce;
@@ -43,12 +44,12 @@ input[type="text"].idField  { width: 40px; }
   transform: translateY(2px);
 }
 .buttonLink {
-	color: #feffff;
+	color: #98dafc;
 	background: none;
 	border: none;
 	padding: 0;
 	font: inherit;
-	border-bottom: 1px solid blue;
+	border-bottom: 1.5px solid #98dafc;
 	cursor: pointer;
 }
 .buttonLink:active {
@@ -66,6 +67,10 @@ footer { font-size: .75em;
     text-align: center;
     clear: both;
     position: relative; }
-p { padding: 0 2em 0 2em; }
-#langOption { position: relative;
-	left: 82%; }
+p { padding: 0 3em 0 3em;
+	margin: .15em 0 .15em 0; }
+#langOption { position: absolute;
+	bottom: 10px;
+	right: 15px;
+	font-size: 13px; }
+.paragraphHeader { margin: 3em 0 1em 0; }
