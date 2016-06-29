@@ -17,7 +17,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import a00973641.data.Member;
 import a00973641.database.DBConnectionManager;
@@ -63,9 +62,6 @@ public class MemberDao {
 			ps.setInt(1, member.getMemberID());
 
 			int count = ps.executeUpdate();
-
-			// Add executed sql statement to session summary
-			addSQLSummary(request, ps.toString());
 
 			System.out.println("Successfully deleted row: " + count);
 
@@ -122,9 +118,6 @@ public class MemberDao {
 				ps.setInt(9, member.getMemberID());
 
 				int count = ps.executeUpdate();
-
-				// Add executed sql statement to session summary
-				addSQLSummary(request, ps.toString());
 
 				System.out.println("Successfully updated row: " + count);
 				rd = ctx.getRequestDispatcher("/result.jsp");
@@ -183,15 +176,13 @@ public class MemberDao {
 
 				int count = ps.executeUpdate();
 
-				// Add executed sql statement to session summary
-				addSQLSummary(request, ps.toString());
-
 				System.out.println("Successfully added row: " + count);
 				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
 				// TODO error
-				System.out.println(e.getMessage());
+				e.printStackTrace();
+				System.out.println();
 			} finally {
 				DBUtil.closeStatement(ps);
 				db.shutdown();
@@ -257,12 +248,5 @@ public class MemberDao {
 		request.setAttribute("member", member);
 
 		return member;
-	}
-
-	private static void addSQLSummary(HttpServletRequest request, String sql) {
-		HttpSession session = request.getSession();
-		String summary = (String) session.getAttribute("SQLSummary");
-		summary = String.format("%s %n %s", summary, sql);
-		session.setAttribute("SQLSummary", summary);
 	}
 }

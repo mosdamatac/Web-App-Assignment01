@@ -52,4 +52,7 @@ public interface RbConstants {
 	// Main page Strings
 	String ACTION = "Action";
 	String AUTO_FILL = "Auto_Fill";
+
+	// Summary page Strings
+	String SUMMARY = "Summary";
 }

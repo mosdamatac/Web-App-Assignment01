@@ -30,6 +30,7 @@
 		<section>${sessionScope.SQLSummary }</section>
 		<form action="assignment01">
 			<input type="submit" value="Home" name="homeBtn" class="button"/>
+			<input type="submit" value="Back" name="backBtn" class="button"/>
 			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>
 		<br/>

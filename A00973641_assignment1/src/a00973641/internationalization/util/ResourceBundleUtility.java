@@ -73,5 +73,8 @@ public class ResourceBundleUtility {
 		// Main page Strings
 		request.setAttribute(RbConstants.ACTION, resourceBundle.getString(RbConstants.ACTION));
 		request.setAttribute(RbConstants.AUTO_FILL, resourceBundle.getString(RbConstants.AUTO_FILL));
+
+		// Summary page Strings
+		request.setAttribute(RbConstants.SUMMARY, resourceBundle.getString(RbConstants.SUMMARY));
 	}
 }
