@@ -34,8 +34,8 @@ response.setDateHeader("Expires", 0);
 			if(myForm.city.value == "") {				
 				errMsg = errMsg + "City can't be empty\n"
 			}
-			if(myForm.code.value == "") {
-				errMsg = errMsg + "Code can't be empty\n"
+			if(myForm.code.value == "" || myForm.code.value.length > 7) {
+				errMsg = errMsg + "Code can't be empty and less than 7 characters long\n"
 			}
 			if(myForm.country.value == "") {
 				errMsg = errMsg + "Country can't be empty\n"

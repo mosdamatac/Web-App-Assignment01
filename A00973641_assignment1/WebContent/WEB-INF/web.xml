@@ -1,84 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  
-	<!-- Associate index.jsp to index -->
-	<servlet>
-	    <servlet-name>index</servlet-name>
-	    <jsp-file>/resources/index.jsp</jsp-file>
-  	</servlet>
-  	
-  	<!-- Associate main.jsp to main -->
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <jsp-file>/resources/index.jsp</jsp-file>
+  </servlet>
   <servlet>
     <servlet-name>main</servlet-name>
     <jsp-file>/resources/main.jsp</jsp-file>
   </servlet>
-  
-  <!-- Associate result.jsp to result -->
   <servlet>
     <servlet-name>result</servlet-name>
     <jsp-file>/resources/result.jsp</jsp-file>
   </servlet>
-
-  <!-- Associate Assignment01Servlet to assignment01 -->
   <servlet>
     <servlet-name>assignment01</servlet-name>
     <servlet-class>a00973641.Assignment01Servlet</servlet-class>
   </servlet>
-  
-  <!-- Associate ViewServlet to view -->
   <servlet>
     <servlet-name>view</servlet-name>
     <servlet-class>a00973641.view.ViewServlet</servlet-class>
   </servlet>
-
-  <!-- Associate InternationalizationServlet to i18n -->
   <servlet>
     <servlet-name>i18n</servlet-name>
     <servlet-class>a00973641.InternationalizationServlet</servlet-class>
   </servlet>
-  
-  <!-- Associate errorPage.jsp to error -->
   <servlet>
     <servlet-name>error</servlet-name>
     <jsp-file>/resources/errorPage.jsp</jsp-file>
   </servlet>
-  
-  <!-- Associate about.jsp to about -->
   <servlet>
     <servlet-name>about</servlet-name>
     <jsp-file>/resources/about.jsp</jsp-file>
   </servlet>
-  
-  <!-- Associate summary.jsp to summary -->
   <servlet>
     <servlet-name>summary</servlet-name>
     <jsp-file>/resources/summary.jsp</jsp-file>
   </servlet>
-  
-  <!-- Context parameter for author -->
   <context-param>
     <param-name>author</param-name>
     <param-value>Mara Damatac, A00973641</param-value>
   </context-param>
-  
-  <!-- Context parameter for course -->
   <context-param>
     <param-name>course</param-name>
     <param-value>Comp 3613</param-value>
   </context-param>
-  
-  <!-- Context parameter for footer -->
   <context-param>
     <param-name>footer</param-name>
     <param-value>A00973641 Mara 2016</param-value>
   </context-param>
-  
-  <!-- Listener class -->
   <listener>
-  	<listener-class>a00973641.database.AppContextListener</listener-class>
-  </listener>  
-  
-  <!-- Servlet mapping -->
+    <listener-class>a00973641.database.AppContextListener</listener-class>
+  </listener>
   <servlet-mapping>
     <servlet-name>index</servlet-name>
     <url-pattern>/index.jsp</url-pattern>

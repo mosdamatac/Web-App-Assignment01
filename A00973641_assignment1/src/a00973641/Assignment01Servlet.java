@@ -1,6 +1,8 @@
 package a00973641;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -8,7 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import a00973641.database.DBInit;
 import a00973641.database.dao.MemberDao;
 
 /**
@@ -39,7 +43,17 @@ public class Assignment01Servlet extends HttpServlet {
 			System.out.println("Redirecting to main.jsp...");
 			rd = ctx.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
-		} else if (request.getParameter("continueBtn") != null) {
+		} else if (request.getParameter("loginBtn") != null) {
+			// Decrypt and initialize database properties
+			String password = request.getParameter("passwordTb");
+			DBInit dbinit = DBInit.getInstance();
+			dbinit.init(request, ctx, password);
+
+			// Create a summary arraylist session attribute if successful login
+			List<String> dbSummary = new ArrayList<>();
+			HttpSession session = request.getSession();
+			session.setAttribute("dbSummary", dbSummary);
+
 			System.out.println("Redirecting to main.jsp...");
 			rd = ctx.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);

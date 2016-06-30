@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
@@ -17,11 +19,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import a00973641.data.Member;
 import a00973641.database.DBConnectionManager;
-import a00973641.database.DbConstants;
 import a00973641.database.util.DBUtil;
+import a00973641.database.util.DbConstants;
 import a00973641.util.ServletUtilities;
 
 /**
@@ -33,6 +36,8 @@ public class MemberDao {
 	private static final Pattern VALID_PHONE = Pattern.compile("^\\d{3}-\\d{3}-\\d{4}$");
 	private static final Pattern VALID_EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
+	private static HttpSession session;
+	private static List<String> dbSummary;
 
 	public MemberDao() {
 
@@ -40,6 +45,10 @@ public class MemberDao {
 
 	public static void delete(HttpServletRequest request, HttpServletResponse response, ServletContext ctx)
 			throws ServletException, IOException {
+		// Get session dbSummary
+		session = request.getSession();
+		dbSummary = (ArrayList<String>) session.getAttribute("dbSummary");
+
 		RequestDispatcher rd = null;
 
 		DBConnectionManager db = DBConnectionManager.getInstance();
@@ -64,6 +73,8 @@ public class MemberDao {
 			int count = ps.executeUpdate();
 
 			System.out.println("Successfully deleted row: " + count);
+			// Add executed SQL to dbSummary in session
+			dbSummary.add(ps.toString());
 
 			rd = ctx.getRequestDispatcher("/result.jsp");
 			rd.forward(request, response);
@@ -77,6 +88,10 @@ public class MemberDao {
 
 	public static void update(HttpServletRequest request, HttpServletResponse response, ServletContext ctx)
 			throws ServletException, IOException {
+		// Get session dbSummary
+		session = request.getSession();
+		dbSummary = (ArrayList<String>) session.getAttribute("dbSummary");
+
 		request.setAttribute("operation", "updated");
 
 		RequestDispatcher rd = null;
@@ -120,6 +135,9 @@ public class MemberDao {
 				int count = ps.executeUpdate();
 
 				System.out.println("Successfully updated row: " + count);
+				// Add executed SQL to dbSummary in session
+				dbSummary.add(ps.toString());
+
 				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
@@ -137,6 +155,10 @@ public class MemberDao {
 
 	public static void insert(HttpServletRequest request, HttpServletResponse response, ServletContext ctx)
 			throws ServletException, IOException {
+		// Get session dbSummary
+		session = request.getSession();
+		dbSummary = (ArrayList<String>) session.getAttribute("dbSummary");
+
 		request.setAttribute("operation", "added");
 
 		RequestDispatcher rd = null;
@@ -177,6 +199,9 @@ public class MemberDao {
 				int count = ps.executeUpdate();
 
 				System.out.println("Successfully added row: " + count);
+				// Add executed SQL to dbSummary in session
+				dbSummary.add(ps.toString());
+
 				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
 			} catch (SQLException e) {
@@ -205,8 +230,8 @@ public class MemberDao {
 		if (member.getCity() == null || member.getCity().trim().equals("")) {
 			errorMsg.append("City can't be empty<br>");
 		}
-		if (member.getCode() == null || member.getCode().trim().equals("")) {
-			errorMsg.append("Code can't be empty<br>");
+		if (member.getCode() == null || member.getCode().trim().equals("") || member.getCode().trim().length() > 7) {
+			errorMsg.append("Code can't be empty and less than 7 characters long<br>");
 		}
 		if (member.getCountry() == null || member.getCountry().trim().equals("")) {
 			errorMsg.append("Country can't be empty<br>");

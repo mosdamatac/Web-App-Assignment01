@@ -1,3 +1,4 @@
+<%@ page import="java.util.List, java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,9 +28,18 @@
 		<p>
 		<span class="spanHead">${requestScope.Summary }</span><br/>
 		<br/>
-		<section>${sessionScope.SQLSummary }</section>
+		<section>
+			<%
+			List<String> dbSummary = (ArrayList<String>) session.getAttribute("dbSummary");
+			for (String sql : dbSummary) {
+			%>
+			
+			<%= sql %><br/>
+			
+			<%} %>
+		</section>
+		<br/>
 		<form action="assignment01">
-			<input type="submit" value="Home" name="homeBtn" class="button"/>
 			<input type="submit" value="Back" name="backBtn" class="button"/>
 			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import a00973641.data.Member;
 import a00973641.database.DBConnectionManager;
-import a00973641.database.DbConstants;
 import a00973641.database.util.DBUtil;
+import a00973641.database.util.DbConstants;
 
 /**
  * Servlet implementation class Assignment01Servlet
@@ -31,7 +31,7 @@ public class ViewServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DBConnectionManager db = (DBConnectionManager) getServletContext().getAttribute("database");
+		DBConnectionManager db = DBConnectionManager.getInstance();
 		Connection dbConn = null;
 		PreparedStatement ps = null;
 		String selectSQL = String.format("SELECT * FROM %s", DbConstants.MEMBER_TABLE_NAME);

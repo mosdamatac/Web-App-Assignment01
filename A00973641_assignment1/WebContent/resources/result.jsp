@@ -67,7 +67,7 @@
 			</table>
 			<br/>
 			<form action="assignment01">
-				<input type="submit" value="Continue" name="continueBtn" class="button">
+				<input type="submit" value="Back" name="backBtn" class="button">
 			</form>
 			<br/>
 		</p>

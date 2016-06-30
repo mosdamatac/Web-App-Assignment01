@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import a00973641.database.util.DbConstants;
+
 /**
  * @author Mara
  *

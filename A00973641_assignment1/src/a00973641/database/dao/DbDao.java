@@ -20,7 +20,7 @@ import javax.servlet.ServletContext;
 
 import a00973641.data.MetaDataBean;
 import a00973641.database.DBConnectionManager;
-import a00973641.database.DbConstants;
+import a00973641.database.util.DbConstants;
 
 /**
  * @author Mara

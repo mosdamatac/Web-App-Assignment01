@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import a00973641.database.util.DBUtil;
+import a00973641.database.util.DbConstants;
 
 /**
  * @author Mara
@@ -46,7 +47,7 @@ public class CreateMemberTable {
 			String createSQL = String.format(
 					"CREATE TABLE %s (MemberID INT IDENTITY(1,1) PRIMARY KEY, " + //
 							"firstName VARCHAR(15), lastName VARCHAR(15), Address VARCHAR(25), City VARCHAR(15), " + //
-							"Code CHAR(6), Country VARCHAR(15), PhoneNumber CHAR(12), EMail VARCHAR(30))", //
+							"Code CHAR(7), Country VARCHAR(15), PhoneNumber CHAR(12), EMail VARCHAR(30))", //
 					DbConstants.MEMBER_TABLE_NAME);
 			System.out.println("Create SQL: " + createSQL);
 			ps = dbConn.prepareStatement(createSQL);

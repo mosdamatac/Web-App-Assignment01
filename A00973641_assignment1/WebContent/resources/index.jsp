@@ -29,7 +29,9 @@
 		<span class="spanHead">${requestScope.Welcome }!! <br/> ${initParam.course }</span><br/>
 		<br/>
 		<form action="assignment01">
-			<input type="submit" value="Continue" name="continueBtn" class="button">
+			<label for="passwordTb">Enter password</label><br/>
+			<input type="password" name="passwordTb" /><br/><br/>
+			<input type="submit" value="Login" name="loginBtn" class="button">
 			<input type="submit" value="About" name="aboutBtn" class="button"/>
 		</form>
 		<br/>

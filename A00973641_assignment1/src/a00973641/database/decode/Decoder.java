@@ -7,9 +7,9 @@
 package a00973641.database.decode;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -22,6 +22,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import javax.servlet.ServletContext;
+
+import a00973641.database.util.DbConstants;
 
 /**
  * @author Mara
@@ -36,7 +39,7 @@ public class Decoder {
 	// iteration count
 	private int iterationCount = 100;
 
-	public byte[] readAndDecrypt(String fileName, String password) {
+	public byte[] readAndDecrypt(ServletContext ctx, String password) {
 		Cipher cipher = null;
 
 		try {
@@ -84,7 +87,7 @@ public class Decoder {
 			System.exit(1);
 		}
 
-		byte[] decryptedText = readFile(cipher, fileName);
+		byte[] decryptedText = readFile(cipher, ctx);
 		return decryptedText;
 	}
 
@@ -95,14 +98,14 @@ public class Decoder {
 	 * @param fileName
 	 * @return vector of bytes read from given file
 	 */
-	private byte[] readFile(Cipher cipher, String fileName) {
-		FileInputStream inputfile = null;
+	private byte[] readFile(Cipher cipher, ServletContext ctx) {
+		InputStream inputfile = null;
 		ByteArrayOutputStream buffer = null;
 		CipherInputStream in = null;
 
 		// get byte value of given file
 		try {
-			inputfile = new FileInputStream(fileName);
+			inputfile = ctx.getResourceAsStream(DbConstants.DB_PROPERTIES_FILENAME);
 			buffer = new ByteArrayOutputStream();
 			int ch;
 			in = new CipherInputStream(inputfile, cipher);
