@@ -74,7 +74,8 @@ public class MemberDao {
 
 			System.out.println("Successfully deleted row: " + count);
 			// Add executed SQL to dbSummary in session
-			dbSummary.add(ps.toString());
+			String sql = String.format("DELETE FROM %s WHERE MemberID=%s", DbConstants.MEMBER_TABLE_NAME, member.getMemberID());
+			dbSummary.add(sql);
 
 			rd = ctx.getRequestDispatcher("/result.jsp");
 			rd.forward(request, response);
@@ -136,7 +137,18 @@ public class MemberDao {
 
 				System.out.println("Successfully updated row: " + count);
 				// Add executed SQL to dbSummary in session
-				dbSummary.add(ps.toString());
+				String sql = String.format("UPDATE %s SET %s=%s,%s=%s,%s=%s,%s=%s,%s=%s,%s=%s,%s=%s,%s=%s WHERE %s=%s",
+						DbConstants.MEMBER_TABLE_NAME,
+						"firstName", member.getFirstName(), //
+						"lastName", member.getLastName(), //
+						"Address", member.getAddress(), //
+						"City", member.getCity(), //
+						"Code", member.getCode(), //
+						"Country", member.getCountry(), //
+						"PhoneNumber", member.getPhoneNumber(), //
+						"EMail", member.getEmail(), //
+						"MemberID", member.getMemberID());
+				dbSummary.add(sql);
 
 				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
@@ -200,7 +212,11 @@ public class MemberDao {
 
 				System.out.println("Successfully added row: " + count);
 				// Add executed SQL to dbSummary in session
-				dbSummary.add(ps.toString());
+				String sql = String.format("INSERT INTO %s VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+						DbConstants.MEMBER_TABLE_NAME, member.getFirstName(), member.getLastName(),
+						member.getAddress(), member.getCity(), member.getCode(), member.getCountry(),
+						member.getPhoneNumber(), member.getEmail());
+				dbSummary.add(sql);
 
 				rd = ctx.getRequestDispatcher("/result.jsp");
 				rd.forward(request, response);
