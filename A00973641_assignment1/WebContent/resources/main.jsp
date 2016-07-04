@@ -60,6 +60,7 @@ response.setDateHeader("Expires", 0);
 <body>
 <jsp:include page="/view"/>
 <jsp:include page="/i18n"/>
+<% session.setAttribute("backVal", "/main.jsp"); %>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>

@@ -29,6 +29,7 @@ public class Assignment01Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext ctx = getServletContext();
+		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
 		if (request.getParameter("insert") != null) {
 			System.out.println("Redirecting to MemberDao...");
@@ -40,8 +41,9 @@ public class Assignment01Servlet extends HttpServlet {
 			System.out.println("Redirecting to MemberDao...");
 			MemberDao.update(request, response, ctx);
 		} else if (request.getParameter("backBtn") != null) {
-			System.out.println("Redirecting to main.jsp...");
-			rd = ctx.getRequestDispatcher("/main.jsp");
+			// Determine the last page accessed before current page for redirecting back
+			System.out.println("Redirecting to " + session.getAttribute("backVal") + "...");
+			rd = ctx.getRequestDispatcher(session.getAttribute("backVal").toString());
 			rd.forward(request, response);
 		} else if (request.getParameter("loginBtn") != null) {
 			// Decrypt and initialize database properties
@@ -51,7 +53,6 @@ public class Assignment01Servlet extends HttpServlet {
 
 			// Create a summary arraylist session attribute if successful login
 			List<String> dbSummary = new ArrayList<>();
-			HttpSession session = request.getSession();
 			session.setAttribute("dbSummary", dbSummary);
 
 			System.out.println("Redirecting to main.jsp...");

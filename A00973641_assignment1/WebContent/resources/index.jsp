@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="/i18n"/>
+<% session.setAttribute("backVal", "/index.jsp"); %>
 <div id="wrapper">
 	<header>
 		<h2>${initParam.course}</h2>

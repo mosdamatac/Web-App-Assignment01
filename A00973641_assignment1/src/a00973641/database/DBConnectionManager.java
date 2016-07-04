@@ -47,7 +47,7 @@ public class DBConnectionManager {
 		try {
 			connect();
 		} catch (ClassNotFoundException e) {
-			// TODO error
+			
 		}
 
 		return connection;

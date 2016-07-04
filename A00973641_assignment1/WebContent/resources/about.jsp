@@ -49,7 +49,7 @@
 		<br/>
 		<br/>
 		<form action="assignment01">
-			<input type="submit" value="Home" name="homeBtn" class="button"/>
+			<input type="submit" value="Back" name="backBtn" class="button"/>
 		</form>
 	</div>
 	<footer>&copy; ${initParam.footer}</footer>
